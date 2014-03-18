@@ -17,15 +17,18 @@ pacstrap /mnt base
 
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
-# download the chrooted.sh script under /mnt
+# download the chrooted.sh and post-install.sh scripts into /mnt
 cd /mnt 
+echo Grabbing the chroot and post-installation scripts...
 wget https://raw.github.com/brandonlichtenwalner/ai/master/chrooted.sh
+wget https://raw.github.com/brandonlichtenwalner/ai/master/post-install.sh
 chmod +x chrooted.sh
+chmod +x post-install.sh
 cd
 
 arch-chroot /mnt /bin/bash
 # the system will now be waiting for the arch-chroot to finish
 
 # once the chroot is exited finish up with unmounting
-unmount -R /mnt
-echo ...and done. Now just reboot.
+umount -R /mnt
+echo ...and done. Now just -reboot-.
