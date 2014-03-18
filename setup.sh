@@ -14,8 +14,8 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 
 # download the ai-chrooted.sh script under /mnt
 cd /mnt 
-wget -O ai-chrooted.sh <URL>
-chmod +x ai-chrooted.sh
+wget https://raw.github.com/brandonlichtenwalner/ai/master/chrooted.sh
+chmod +x chrooted.sh
 cd
 
 arch-chroot /mnt /bin/bash
