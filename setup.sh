@@ -6,7 +6,7 @@
 # 2) Partitioned the disk (and changed the root partition below, if necessary)
 
 echo Starting initial setup in 5 seconds.
-echo It will take a few minutes (or longer on a slow connection) for pacstrap to run,
+echo It will take a few minutes--or longer on a slow connection--for pacstrap to run,
 echo so be patient and do not touch anything if you want this script to complete successfully!
 sleep 5
 
