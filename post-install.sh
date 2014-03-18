@@ -26,10 +26,10 @@ useradd -m -G users,games -s /bin/bash $USER2
 echo Set password for $USER2
 passwd $USER2
 
-# be sure we start with the most up-to-date packages.
-pacman -Syyu
-
-pacman -S alsa-utils dkms mesa ttf-dejavu wget sudo xorg-server xorg-server-utils xorg-xinit $VIDEO $LAPTOP
+echo Updating repositories and installing common packages
+pacman -Syyu alsa-utils dkms mesa ttf-dejavu wget sudo xorg-server xorg-server-utils xorg-xinit $VIDEO $LAPTOP
+echo Installing needed base-devel packages for AUR builds
+pacman -S --needed base-devel
 
 systemctl enable dkms
 
