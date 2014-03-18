@@ -14,6 +14,9 @@ VIDEO=""
 LAPTOP=""
 #LAPTOP="xf86-input-synaptics"
 
+# set nano as the default editor system wide
+echo EDITOR=nano >> /etc/environment
+
 # the first user is assumed to be an admin user
 useradd -m -G users,games,wheel -s /bin/bash $USER1
 echo Set password for $USER1
