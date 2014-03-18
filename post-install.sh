@@ -14,9 +14,6 @@ VIDEO=""
 LAPTOP=""
 #LAPTOP="xf86-input-synaptics"
 
-# set nano as the default editor system wide
-echo EDITOR=nano >> /etc/environment
-
 # the first user is assumed to be an admin user
 useradd -m -G users,games,wheel -s /bin/bash $USER1
 echo Set password for $USER1
@@ -52,5 +49,8 @@ echo launching visudo in 10 seconds...
 sleep 10
 EDITOR=nano visudo
 
-echo Remember to run alsamixer to unmute sound.
+# I never really got into vi...
+echo EDITOR=nano >> /etc/environment
+
+echo Remember to run alsamixer to unmute your sound.
 echo Then log in as $USER1 and run yaourt-setup.sh to install Yaourt.
