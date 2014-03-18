@@ -37,5 +37,11 @@ chmod +x yaourt-setup.sh
 chown $USER1:$USER1 yaourt-setup.sh
 cd
 
+echo You need to uncomment 2 lines in /etc/pacman.conf to enable multilib if you are on a 64-bit system.
+echo You may also want to configure a few other options there.
+echo launching nano in 5 seconds...
+sleep 5
+nano /etc/pacman.conf
+
 echo Remember to run alsamixer to unmute sound.
 echo Then log in as $USER1 and run yaourt-setup.sh to install Yaourt.
