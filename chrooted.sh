@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script follows https://wiki.archlinux.org/index.php/Beginners'_guide
-# Before running it, make sure you have already run ai-setup.sh (or otherwise performed those steps)
+# Before running it, make sure you have already run setup.sh (or otherwise performed those steps).
 
 # variables
 LANGUAGE=en_US.UTF-8
