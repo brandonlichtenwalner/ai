@@ -46,5 +46,11 @@ echo launching nano in 5 seconds...
 sleep 5
 nano /etc/pacman.conf
 
+echo You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo.
+echo You may also want to add: Defaults:$USER1 timestamp_timeout=20 to the end of the file.
+echo launching visudo in 10 seconds...
+sleep 10
+EDITOR=nano visudo
+
 echo Remember to run alsamixer to unmute sound.
 echo Then log in as $USER1 and run yaourt-setup.sh to install Yaourt.
