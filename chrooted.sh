@@ -48,8 +48,4 @@ echo launching nano in $SLEEPTIME seconds...
 sleep $SLEEPTIME
 nano /boot/syslinux/syslinux.cfg
 
-echo Grabbing the post-installation script...
-wget https://raw.github.com/brandonlichtenwalner/ai/master/post-install.sh
-
-echo Now exiting the chroot environment.
-exit
+echo Now just type -exit- to leave the chroot environment and finish installation.
