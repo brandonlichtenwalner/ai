@@ -7,8 +7,9 @@
 LANGUAGE=en_US.UTF-8
 SLEEPTIME=5
 HOSTNAME=v-arch
+TZ=America/New_York
 
-echo Uncomment $LANGUAGE in /etc/locale.gen
+echo You need to uncomment $LANGUAGE in /etc/locale.gen
 echo launching nano in $SLEEPTIME seconds...
 sleep $SLEEPTIME
 nano /etc/locale.gen
@@ -17,7 +18,7 @@ locale-gen
 echo LANG=$LANGUAGE > /etc/locale.conf
 export LANG=$LANGUAGE
 
-ln -s /usr/share/zoneinfo/America/New_York /etc/localtime
+ln -s /usr/share/zoneinfo/$TZ /etc/localtime
 
 hwclock --systohc --utc
 
@@ -47,8 +48,8 @@ echo launching nano in $SLEEPTIME seconds...
 sleep $SLEEPTIME
 nano /boot/syslinux/syslinux.cfg
 
-#echo Grabbing the post-installation script...
-#wget 
+echo Grabbing the post-installation script...
+wget https://raw.github.com/brandonlichtenwalner/ai/master/post-install.sh
 
 echo Now exiting the chroot environment.
 exit
