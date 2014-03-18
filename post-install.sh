@@ -27,7 +27,7 @@ echo Set password for $USER2
 passwd $USER2
 
 echo Updating repositories and installing common packages
-pacman -Syyu alsa-utils dkms mesa ttf-dejavu wget sudo xorg-server xorg-server-utils xorg-xinit $VIDEO $LAPTOP
+pacman -Syyu alsa-utils dkms mesa rsync sudo ttf-dejavu wget xorg-server xorg-server-utils xorg-xinit $VIDEO $LAPTOP
 echo Installing needed base-devel packages for AUR builds
 pacman -S --needed base-devel
 
