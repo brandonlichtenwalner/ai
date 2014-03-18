@@ -26,7 +26,7 @@ passwd $USER2
 # be sure we start with the most up-to-date packages.
 pacman -Syyu
 
-pacman -S alsa-utils mesa ttf-dejavu wget xorg-server xorg-server-utils xorg-xinit $VIDEO $LAPTOP
+pacman -S alsa-utils dkms mesa ttf-dejavu wget xorg-server xorg-server-utils xorg-xinit $VIDEO $LAPTOP
 
 # I am used to Yaourt as a front-end to the AUR, but you don't want to makepkg as root
 cd /home/$USER1
