@@ -28,6 +28,8 @@ pacman -Syyu
 
 pacman -S alsa-utils dkms mesa ttf-dejavu wget xorg-server xorg-server-utils xorg-xinit $VIDEO $LAPTOP
 
+systemctl enable dkms
+
 # I am used to Yaourt as a front-end to the AUR, but you don't want to makepkg as root
 cd /home/$USER1
 wget https://raw.github.com/brandonlichtenwalner/ai/master/yaourt-setup.sh
