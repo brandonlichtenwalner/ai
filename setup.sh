@@ -17,7 +17,7 @@ pacstrap /mnt base
 
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
-# download the ai-chrooted.sh script under /mnt
+# download the chrooted.sh script under /mnt
 cd /mnt 
 wget https://raw.github.com/brandonlichtenwalner/ai/master/chrooted.sh
 chmod +x chrooted.sh
