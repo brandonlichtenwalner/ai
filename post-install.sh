@@ -15,11 +15,11 @@ LAPTOP=""
 #LAPTOP="xf86-input-synaptics"
 
 # the first user is assumed to be an admin user
-useradd -m -g -G users,games,wheel -s /bin/bash $USER1
+useradd -m -G users,games,wheel -s /bin/bash $USER1
 echo Set password for $USER1
 passwd $USER1
 
-useradd -m -g -G users,games -s /bin/bash $USER2
+useradd -m -G users,games -s /bin/bash $USER2
 echo Set password for $USER2
 passwd $USER2
 
