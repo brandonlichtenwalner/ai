@@ -30,7 +30,7 @@ pacman -S alsa-utils dkms mesa ttf-dejavu wget xorg-server xorg-server-utils xor
 
 # I am used to Yaourt as a front-end to the AUR, but you don't want to makepkg as root
 cd /home/$USER1
-wget path-to-file
+wget https://raw.github.com/brandonlichtenwalner/ai/master/yaourt-setup.sh
 chmod +x yaourt-setup.sh
 chown $USER1:$USER1 yaourt-setup.sh
 cd
