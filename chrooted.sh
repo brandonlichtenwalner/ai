@@ -30,7 +30,7 @@ sleep $SLEEPTIME
 systemctl enable dhcpcd.service
 
 echo About to run mkinitcpio
-echo If you need to add any HOOKS (e.g. RAID, LVM, or booting from USB) hit Control+Z now to halt the script and finish the process manually.
+echo If you need to add any HOOKS--e.g. RAID, LVM, or USB boot--hit Control+Z now to halt the script and finish the process manually.
 sleep $SLEEPTIME
 mkinitcpio -p linux
 
