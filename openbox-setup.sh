@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Openbox with "necessary" applications
-# Set up to run as a normal user with sudo as Yaourt prefers it this way
+# Set up to run as a normal user with sudo
 
 sudo pacman -Syu chromium geany-plugins gnome-calculator gnome-icon-theme-extras gnome-keyring gvfs libgnomeui lightdm-gtk3-greeter lxpolkit lxterminal menumaker obconf obmenu openbox openbox-themes pcmanfm polkit python2-xdg xterm
 # NOTE the Qt alternatives: kdesdk-kate kdebase-konsole lightdm-kde-greeter pcmanfm-qt
@@ -15,6 +15,10 @@ sudo pacman -Syu chromium geany-plugins gnome-calculator gnome-icon-theme-extras
 
 sudo systemctl enable lightdm
 
+mmaker -vfs Console OpenBox3
+echo :::
+echo Run :: mmaker -vfs Console Openbox3 :: for other users, or copy .config/openbox/menu.xml for them.
+
 # enable compositing and a logout menu
 # echo Please see https://wiki.archlinux.org/index.php/Compton
 # echo and https://wiki.archlinux.org/index.php/Oblogout
@@ -26,7 +30,7 @@ sudo systemctl enable lightdm
 # additional applications plus some useful optional dependencies
 # pacman -S alsa-plugins dosfstools ffmpeg gvfs-smb libdvdcss lxappearance-obconf lxrandr ntfs-3g speex steam vlc
 
-echo :::
-echo Please see https://wiki.archlinux.org/index.php/Openbox#GTK.2B_2 if having problems with GTK themes.
+#echo :::
+#echo Please see https://wiki.archlinux.org/index.php/Openbox#GTK.2B_2 if having problems with GTK themes.
 echo :::
 echo You might want to reboot now to enjoy your fresh Openbox GUI.
