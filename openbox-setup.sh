@@ -3,7 +3,7 @@
 # Openbox with "necessary" applications
 # Set up to run as a normal user with sudo as Yaourt prefers it this way
 
-sudo pacman -Syu chromium geany-plugins gnome-calculator gnome-icon-theme-extras gnome-keyring gvfs libgnomeui lightdm-gtk3-greeter lxpolkit lxterminal obconf obmenu openbox openbox-themes pcmanfm polkit python2-xdg
+sudo pacman -Syu chromium geany-plugins gnome-calculator gnome-icon-theme-extras gnome-keyring gvfs libgnomeui lightdm-gtk3-greeter lxpolkit lxterminal menumaker obconf obmenu openbox openbox-themes pcmanfm polkit python2-xdg xterm
 # NOTE the Qt alternatives: kdesdk-kate kdebase-konsole lightdm-kde-greeter pcmanfm-qt
 # actually take up more resources than: geany lxterminal lightdm-gtk-greeter pcmanfm
 # and all of the actual GTK packages required were already installed after installing only openbox and chromium
