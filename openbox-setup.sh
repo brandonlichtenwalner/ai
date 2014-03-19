@@ -3,7 +3,7 @@
 # Openbox with "necessary" applications
 # Set up to run as a normal user with sudo as Yaourt prefers it this way
 
-sudo pacman -Syu chromium geany-plugins gnome-keyring gvfs lightdm-gtk3-greeter lxpolkit lxterminal openbox pcmanfm polkit python2-xdg
+sudo pacman -Syu chromium geany-plugins gnome-calculator gnome-icon-theme-extras gnome-keyring gvfs libgnomeui lightdm-gtk3-greeter lxpolkit lxterminal obconf obmenu openbox openbox-themes pcmanfm polkit python2-xdg
 # NOTE the Qt alternatives: kdesdk-kate kdebase-konsole lightdm-kde-greeter pcmanfm-qt
 # actually take up more resources than: geany lxterminal lightdm-gtk-greeter pcmanfm
 # and all of the actual GTK packages required were already installed after installing only openbox and chromium
@@ -15,8 +15,15 @@ sudo pacman -Syu chromium geany-plugins gnome-keyring gvfs lightdm-gtk3-greeter 
 
 sudo systemctl enable lightdm
 
+# enable compositing and a logout menu
+# echo Please see https://wiki.archlinux.org/index.php/Compton
+# echo and https://wiki.archlinux.org/index.php/Oblogout
+# yaourt -Syua compton oblogout
+
 # Install all of the extras for chromium
 # yaourt -Syua chromium-pepper-flash chromium-libpdf google-talkplugin
 
 # additional applications plus some useful optional dependencies
-# pacman -S alsa-plugins dosfstools ffmpeg gvfs-smb libdvdcss ntfs-3g speex steam vlc
+# pacman -S alsa-plugins dosfstools ffmpeg gvfs-smb libdvdcss lxappearance-obconf lxrandr ntfs-3g speex steam vlc
+
+echo Please see https://wiki.archlinux.org/index.php/Openbox#GTK.2B_2 if having problems with GTK themes.
