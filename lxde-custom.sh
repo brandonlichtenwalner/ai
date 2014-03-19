@@ -8,6 +8,9 @@
 
 pacman -Syu lightdm-gtk3-greeter lxapparance-obconf lxde-common lxde-icon-theme lxinput lxmenu-data lxpolkit lxrandr lxsession lxshortcut lxtask lxterminal menu-cache openbox pcmanfm
 
+# optional, but desired dependencies
+pacman -S gvfs-smb
+
 systemctl enable lightdm
 
 # additional applications everyone needs
