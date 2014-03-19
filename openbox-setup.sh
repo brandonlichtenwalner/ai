@@ -27,3 +27,5 @@ sudo systemctl enable lightdm
 # pacman -S alsa-plugins dosfstools ffmpeg gvfs-smb libdvdcss lxappearance-obconf lxrandr ntfs-3g speex steam vlc
 
 echo Please see https://wiki.archlinux.org/index.php/Openbox#GTK.2B_2 if having problems with GTK themes.
+echo :::
+echo You might want to reboot now to enjoy your fresh Openbox GUI.
