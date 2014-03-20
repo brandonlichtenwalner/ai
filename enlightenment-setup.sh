@@ -24,4 +24,4 @@ sudo pacman -S alsa-plugins asunder baobab brasero dosfstools ffmpeg file-roller
 # echo 5 - Add Network to Startup Applications >> enlightenment-post-install.txt
 
 echo :::
-echo Please see the enlightenment-post-install.txt file for additional required configuration steps.
+echo Please see the enlightenment-post-install.txt file for additional--per user--configuration steps.
