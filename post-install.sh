@@ -39,6 +39,12 @@ chown $USER1:$USER1 yaourt-setup.sh
 wget https://raw.github.com/brandonlichtenwalner/ai/master/enlightenment-setup.sh
 chmod +x enlightenment-setup.sh
 chown $USER1:$USER1 enlightenment-setup.sh
+# And grab the post-install.txt file for each user
+wget https://raw.github.com/brandonlichtenwalner/ai/master/enlightenment-post-install.txt
+chown $USER1:$USER1 enlightenment-post-install.txt
+cd /home/$USER2
+wget https://raw.github.com/brandonlichtenwalner/ai/master/enlightenment-post-install.txt
+chown $USER2:$USER2 enlightenment-post-install.txt
 cd
 
 echo You need to uncomment 2 lines in /etc/pacman.conf to enable multilib if you are on a 64-bit system.
