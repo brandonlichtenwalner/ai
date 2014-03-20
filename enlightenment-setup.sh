@@ -18,5 +18,10 @@ echo :::
 echo Installing applications for a complete desktop experience plus useful optional add-ons
 sudo pacman -S alsa-plugins asunder baobab brasero dosfstools ffmpeg file-roller gnome-disk-utility gvfs-smb hplip hunspell-en hypehn-en libdvdcss libreoffice-calc libreoffice-en-US libreoffice-gnome libreoffice-impress libreoffice-writer mumble mythes mythes-en ntfs-3g p7zip speex steam system-config-printer transmission-gtk unrar unzip virtualbox-guest-iso vlc vorbis-tools
 
+# on a laptop or other device where you want to set up wireless
+# sudo pacman -S network-manager-applet
+# sudo systemctl enable NetworkManager.service
+# echo Also add Network to Startup Applications >> enlightenment-post-install.txt
+
 echo :::
 echo Please see the enlightenment-post-install.txt file for additional required configuration steps.
