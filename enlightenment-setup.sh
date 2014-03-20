@@ -4,7 +4,7 @@
 # Set up to run as a normal user with sudo
 echo :::
 echo Installing basic Enlightenment environment
-sudo pacman -Syu chromium enlightenment geany-plugins gnome-icon-theme-extras gnome-keyring gvfs lightdm-gtk3-greeter pcmanfm polkit-gnome terminology
+sudo pacman -Syu chromium enlightenment geany-plugins gnome-icon-theme-extras gnome-keyring gvfs lightdm-gtk3-greeter lxpolkit pcmanfm terminology
 
 sudo systemctl enable lightdm
 
