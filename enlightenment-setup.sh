@@ -11,7 +11,7 @@ sudo systemctl enable polkit-gnome
 
 # Install all of the extras for chromium plus a few other AUR packages
 echo :::
-echo Installing Chromium extras,Spideroak, and Virtualbox extensions from AUR
+echo Installing Chromium extras, Spideroak, and Virtualbox extensions from AUR
 yaourt -Syua chromium-pepper-flash chromium-libpdf google-talkplugin spideroak virtualbox-ext-oracle
 
 # additional applications plus some useful optional dependencies
