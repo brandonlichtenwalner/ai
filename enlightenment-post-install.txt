@@ -1,8 +1,8 @@
 After starting Enlightenment for the first time and going through setup, you will also need to do the following:
 
-1) Settings > All > Look > Application Theme: Select a GTK theme and make sure both boxes are checked, Select an icon theme and make sure both boxes are checked
-2) Settings > All > Apps > Startup Applications: Under the "System" tab add Certificate and Key Storage, GPG Password Agent, LXPolkit, SSH Key Agent, and Secret Storage Service
-3) Add the following to ~/.profile
+1 - Settings > All > Look > Application Theme: Select a GTK theme and make sure both boxes are checked, Select an icon theme and make sure both boxes are checked
+2 - Settings > All > Apps > Startup Applications: Under the "System" tab add Certificate and Key Storage, GPG Password Agent, LXPolkit, SSH Key Agent, and Secret Storage Service
+3 - Add the following to ~/.profile
   if [ -n "$DESKTOP_SESSION" ];then 
      # No point to start gnome-keyring-daemon if ssh-agent is not up 
      if [ -n "$SSH_AGENT_PID" ];then 
@@ -12,6 +12,6 @@ After starting Enlightenment for the first time and going through setup, you wil
      fi
  fi
 
-4) Add the following to ~/.bashrc
+4 - Add the following to ~/.bashrc
   PATH="${PATH}:/home/my_user/bin"
 
