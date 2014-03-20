@@ -7,7 +7,6 @@ echo Installing basic Enlightenment environment
 sudo pacman -Syu chromium enlightenment geany-plugins gnome-icon-theme-extras gnome-keyring gvfs lightdm-gtk3-greeter pcmanfm polkit-gnome terminology
 
 sudo systemctl enable lightdm
-sudo systemctl enable polkit-gnome
 
 # Install all of the extras for chromium plus a few other AUR packages
 echo :::
