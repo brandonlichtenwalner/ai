@@ -21,7 +21,7 @@ sudo pacman -S alsa-plugins asunder baobab brasero dosfstools ffmpeg file-roller
 # on a laptop or other device where you want to set up wireless
 # sudo pacman -S network-manager-applet
 # sudo systemctl enable NetworkManager.service
-# echo Also add Network to Startup Applications >> enlightenment-post-install.txt
+# echo 4 - Add Network to Startup Applications >> enlightenment-post-install.txt
 
 echo :::
 echo Please see the enlightenment-post-install.txt file for additional required configuration steps.
