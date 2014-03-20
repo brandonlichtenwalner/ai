@@ -16,9 +16,7 @@ yaourt -Syua chromium-pepper-flash chromium-libpdf google-talkplugin spideroak v
 # additional applications plus some useful optional dependencies
 echo :::
 echo Installing applications for a complete desktop experience plus useful optional add-ons
-sudo pacman -S alsa-plugins asunder baobab brasero dosfstools ffmpeg file-roller gnome-disk-utility gvfs-smb hplip libdvdcss libreoffice-calc libreoffice-impress libreoffice-writer mumble ntfs-3g p7zip speex steam system-config-printer transmission-gtk unrar unzip virtualbox-guest-iso vlc vorbis-tools
+sudo pacman -S alsa-plugins asunder baobab brasero dosfstools ffmpeg file-roller gnome-disk-utility gvfs-smb hplip hunspell-en hypehn-en libdvdcss libreoffice-calc libreoffice-en-US libreoffice-gnome libreoffice-impress libreoffice-writer mumble mythes mythes-en ntfs-3g p7zip speex steam system-config-printer transmission-gtk unrar unzip virtualbox-guest-iso vlc vorbis-tools
 
 echo :::
-echo Please see per-user GNOME Keyring fix at https://wiki.archlinux.org/index.php/enlightenment#GNOME_Keyring_integration
-echo :::
-echo Also make sure polkit-gnome is autostarted - perhaps in Enlightenment settings?
+echo Please see the enlightenment-post-install.txt file for additional required configuration steps.
