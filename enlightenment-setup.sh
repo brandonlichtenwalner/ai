@@ -21,3 +21,5 @@ sudo pacman -S alsa-plugins asunder baobab brasero dosfstools ffmpeg file-roller
 
 echo :::
 echo Please see per-user GNOME Keyring fix at https://wiki.archlinux.org/index.php/enlightenment#GNOME_Keyring_integration
+echo :::
+echo Also make sure polkit-gnome is autostarted - perhaps in Enlightenment settings?
