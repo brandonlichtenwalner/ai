@@ -35,6 +35,10 @@ cd /home/$USER1
 wget https://raw.github.com/brandonlichtenwalner/ai/master/yaourt-setup.sh
 chmod +x yaourt-setup.sh
 chown $USER1:$USER1 yaourt-setup.sh
+# Also grab the script to set up the GUI environment and applications
+wget https://raw.github.com/brandonlichtenwalner/ai/master/enlightenment-setup.sh
+chmod +x enlightenment-setup.sh
+chown $USER1:$USER1 enlightenment-setup.sh
 cd
 
 echo You need to uncomment 2 lines in /etc/pacman.conf to enable multilib if you are on a 64-bit system.
@@ -52,5 +56,6 @@ EDITOR=nano visudo
 # I never really got into vi...
 echo EDITOR=nano >> /etc/environment
 
+echo :::
 echo Remember to run alsamixer to unmute your sound.
 echo Then log in as $USER1 and run yaourt-setup.sh to install Yaourt.
