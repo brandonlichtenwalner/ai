@@ -11,3 +11,7 @@ After starting Enlightenment for the first time and going through setup, you wil
          export GNOME_KEYRING_CONTROL
      fi
  fi
+
+4) Add the following to ~/.bashrc
+  PATH="${PATH}:/home/my_user/bin"
+
