@@ -6,7 +6,7 @@
 # variables
 LANGUAGE=en_US.UTF-8
 SLEEPTIME=5
-HOSTNAME=v-arch
+HOSTNAME=arch
 TZ=America/New_York
 
 echo You need to uncomment $LANGUAGE in /etc/locale.gen
@@ -32,6 +32,7 @@ systemctl enable dhcpcd.service
 echo About to run mkinitcpio
 echo If you need to add any HOOKS--e.g. RAID, LVM, or USB boot--hit Control+Z now to halt the script and finish the process manually.
 sleep $SLEEPTIME
+# nano /etc/mkinitcpio.conf
 mkinitcpio -p linux
 
 echo Set the root password...
