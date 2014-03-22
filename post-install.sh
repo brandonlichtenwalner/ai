@@ -9,8 +9,8 @@ USER2=two
 # list packages you want/need or uncomment packages below as needed/desired
 VIDEO=""
 #VIDEO="xf86-video-vesa"
-#VIDEO="xf86-video-vesa xf86-video-nouveau lib32-nouveau-dri"
-#VIDEO="xf86-video-vesa xf86-video-ati lib32-ati-dri"
+#VIDEO="xf86-video-nouveau lib32-nouveau-dri"
+#VIDEO="xf86-video-ati lib32-ati-dri"
 LAPTOP=""
 #LAPTOP="xf86-input-synaptics"
 
@@ -23,8 +23,11 @@ useradd -m -G users,games -s /bin/bash $USER2
 echo Set password for $USER2
 passwd $USER2
 
-echo Updating repositories and installing common packages
-pacman -Syyu alsa-utils dkms mesa rsync sudo ttf-dejavu wget xorg-server xorg-server-utils xorg-xinit $VIDEO $LAPTOP
+echo :::
+echo Making sure all packages are up to date...
+pacman -Syu
+echo Installing common packages
+pacman -S alsa-utils dkms mesa rsync sudo ttf-dejavu wget xorg-server xorg-server-utils xorg-xinit $VIDEO $LAPTOP
 echo Installing needed base-devel packages for AUR builds
 pacman -S --needed base-devel
 
@@ -45,14 +48,20 @@ chown $USER1:$USER1 enlightenment-post-install.txt
 cd /home/$USER2
 wget https://raw.github.com/brandonlichtenwalner/ai/master/enlightenment-post-install.txt
 chown $USER2:$USER2 enlightenment-post-install.txt
-cd
+cd /
 
+echo :::
 echo You need to uncomment 2 lines in /etc/pacman.conf to enable multilib if you are on a 64-bit system.
 echo You may also want to configure a few other options there.
 echo launching nano in 5 seconds...
 sleep 5
 nano /etc/pacman.conf
 
+echo :::
+echo Updating repositories for multi-lib...
+pacman -Syyu
+
+echo :::
 echo You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo.
 echo You may also want to add: Defaults:$USER1 timestamp_timeout=20 to the end of the file.
 echo launching visudo in 10 seconds...
@@ -65,3 +74,5 @@ echo EDITOR=nano >> /etc/environment
 echo :::
 echo Remember to run alsamixer to unmute your sound.
 echo Then log in as $USER1 and run yaourt-setup.sh to install Yaourt.
+
+rm post-install.sh
