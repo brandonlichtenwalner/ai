@@ -8,7 +8,7 @@ echo Making sure all packages are up to date...
 sudo pacman -Syu
 echo :::
 echo Installing basic Enlightenment environment
-sudo pacman -S chromium enlightenment geany-plugins gnome-icon-theme-extras gnome-keyring gvfs lightdm-gtk3-greeter lxpolkit pcmanfm terminology
+sudo pacman -S chromium enlightenment geany-plugins gnome-icon-theme-extras gnome-keyring gnome-themes-standard gvfs lightdm-gtk3-greeter lxpolkit pcmanfm terminology
 
 sudo systemctl enable lightdm
 
