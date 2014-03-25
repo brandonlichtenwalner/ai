@@ -11,7 +11,6 @@ echo Installing basic Enlightenment environment
 sudo pacman -S chromium enlightenment geany-plugins gnome-icon-theme-extras gnome-keyring gnome-themes-standard gvfs lightdm-gtk3-greeter lxpolkit numlockx pcmanfm terminology
 
 sudo systemctl enable lightdm
-sudo echo greeter-setup-script=/usr/bin/numlockx on >> /etc/lightdm/lightdm.conf
 
 # additional applications plus some useful optional dependencies
 echo :::
