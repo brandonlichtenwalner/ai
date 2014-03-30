@@ -21,8 +21,9 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 cd /mnt 
 echo Grabbing the chroot and post-installation scripts...
 wget https://raw.github.com/brandonlichtenwalner/ai/master/chrooted.sh
-wget https://raw.github.com/brandonlichtenwalner/ai/master/post-install.sh
 chmod +x chrooted.sh
+cd /mnt/root
+wget https://raw.github.com/brandonlichtenwalner/ai/master/post-install.sh
 chmod +x post-install.sh
 cd
 
