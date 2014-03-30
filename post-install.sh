@@ -23,6 +23,14 @@ useradd -m -G users,games -s /bin/bash $USER2
 echo Set password for $USER2
 passwd $USER2
 
+# assuming no swap partition was created during install, create/use a swap file
+fallocate -l 512M /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo /swapfile none swap defaults 0 0 >> /etc/fstab
+
+# install essentials for a GUI environment
 echo :::
 echo Making sure all packages are up to date...
 pacman -Syu
