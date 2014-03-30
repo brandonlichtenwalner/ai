@@ -20,9 +20,12 @@ sudo pacman -S alsa-plugins arandr asunder baobab brasero dosfstools ffmpeg file
 
 # Install all of the extras for chromium plus a few other AUR packages
 echo :::
-echo Installing Chromium extras from AUR
+echo Installing Chromium plugins from AUR
 echo Tip: remove the cleanup step from the first .install file so the Chrome binary does not need to be downloaded twice
 yaourt -S chromium-pepper-flash chromium-libpdf google-talkplugin
+echo :::
+echo Installing Google Music Manager from AUR
+yaourt -S google-musicmanager
 echo :::
 echo Installing Virtualbox extensions from AUR
 yaourt -S virtualbox-ext-oracle
