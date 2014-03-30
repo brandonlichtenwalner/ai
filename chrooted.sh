@@ -52,5 +52,6 @@ nano /boot/syslinux/syslinux.cfg
 echo :::
 echo Removing chrooted.sh in $SLEEPTIME seconds.
 sleep $SLEEPTIME
+rm /chrooted.sh
 
 echo Now just type -exit- to leave the chroot environment and finish installation.
