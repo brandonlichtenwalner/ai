@@ -14,10 +14,6 @@ VIDEO=""
 LAPTOP=""
 #LAPTOP="xf86-input-synaptics"
 
-# if running in Virtualbox uncomment the following and then remember to run it (as root)
-#wget https://raw.github.com/brandonlichtenwalner/ai/master/vbox-guest-setup.sh
-#chmod +x vbox-guest-setup.sh
-
 # the first user is assumed to be an admin user
 useradd -m -G users,games,wheel -s /bin/bash $USER1
 echo Set password for $USER1
@@ -44,6 +40,10 @@ echo Installing needed base-devel packages for AUR builds
 pacman -S --needed base-devel
 
 systemctl enable dkms
+
+# if running in Virtualbox uncomment the following and then remember to run it (as root)
+#wget https://raw.github.com/brandonlichtenwalner/ai/master/vbox-guest-setup.sh
+#chmod +x vbox-guest-setup.sh
 
 # I am used to Yaourt as a front-end to the AUR, but you don't want to makepkg as root
 cd /home/$USER1
