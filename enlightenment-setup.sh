@@ -17,6 +17,9 @@ echo :::
 echo Installing applications for a complete desktop experience plus useful optional add-ons
 sudo pacman -S alsa-plugins arandr asunder baobab brasero dosfstools ffmpeg file-roller gnome-disk-utility gvfs-smb hplip hunspell-en hyphen-en libdvdcss libreoffice-calc libreoffice-en-US libreoffice-gnome libreoffice-impress libreoffice-writer mumble mythes mythes-en ntfs-3g p7zip qt4 shotwell speex steam system-config-printer transmission-gtk unrar unzip virtualbox-guest-iso virtualbox-host-modules vlc vorbis-tools
 
+# load vboxdrv module on startup
+sudo sh -c "echo \"vboxdrv\" > /etc/modules-load.d/virtualbox.conf"
+
 # Install all of the extras for chromium plus a few other AUR packages
 echo :::
 echo Installing Chromium plugins from AUR
