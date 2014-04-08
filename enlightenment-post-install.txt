@@ -3,15 +3,16 @@ After starting Enlightenment for the first time and going through setup, you wil
 1 - Settings > All > Look > Application Theme: Select the Adwaita GTK theme and make sure both boxes are checked. Select the GNOME icon theme and make sure only the top box is checked.
 2 - Settings > All > Apps > Startup Applications: Under the "System" tab add Certificate and Key Storage, GPG Password Agent, LXPolkit, Print Queue Applet, SSH Key Agent, and Secret Storage Service (also Network if using wifi)
 3 - Add the following to ~/.profile
-  if [ -n "$DESKTOP_SESSION" ];then 
-     # No point to start gnome-keyring-daemon if ssh-agent is not up 
-     if [ -n "$SSH_AGENT_PID" ];then 
-         eval $(gnome-keyring-daemon --start) 
-         export SSH_AUTH_SOCK export GPG_AGENT_INFO
-         export GNOME_KEYRING_CONTROL
-     fi
- fi
+if [ -n "$DESKTOP_SESSION" ];then 
+  # No point to start gnome-keyring-daemon if ssh-agent is not up 
+  if [ -n "$SSH_AGENT_PID" ];then 
+    eval $(gnome-keyring-daemon --start) 
+    export SSH_AUTH_SOCK export GPG_AGENT_INFO
+    export GNOME_KEYRING_CONTROL
+  fi
+fi
+
+numlockx on
 
 4 - Add the following to ~/.bashrc
-  PATH="${PATH}:~/bin"
-
+PATH="${PATH}:~/bin"
