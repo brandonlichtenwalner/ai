@@ -15,7 +15,15 @@ sudo systemctl enable lightdm
 # additional applications plus some useful optional dependencies
 echo :::
 echo Installing applications for a complete desktop experience plus useful optional add-ons
-sudo pacman -S alsa-plugins arandr asunder baobab brasero dosfstools ffmpeg file-roller gnome-disk-utility gvfs-smb hplip hunspell-en hyphen-en libdvdcss libreoffice-calc libreoffice-en-US libreoffice-gnome libreoffice-impress libreoffice-writer mumble mythes mythes-en ntfs-3g p7zip qt4 shotwell speex steam system-config-printer transmission-gtk unrar unzip virtualbox-guest-iso virtualbox-host-modules vlc vorbis-tools
+sudo pacman -S alsa-plugins arandr asunder baobab brasero dosfstools ffmpeg file-roller gnome-disk-utility gvfs-smb hplip hunspell-en hyphen-en lib32-alsa-plugins libdvdcss libreoffice-calc libreoffice-en-US libreoffice-gnome libreoffice-impress libreoffice-writer mumble mythes mythes-en ntfs-3g p7zip qt4 shotwell speex steam system-config-printer transmission-gtk unrar unzip virtualbox-guest-iso virtualbox-host-modules vlc vorbis-tools
+
+# for a print server (i.e. local printer attached)
+# echo :::
+# echo Installing CUPS and enabling the service
+# sudo pacman -S cups
+# sudo systemctl enable cups.service
+
+# SANE stuff, if applicable, would go here
 
 # load vboxdrv module on startup
 sudo sh -c "echo \"vboxdrv\" > /etc/modules-load.d/virtualbox.conf"
