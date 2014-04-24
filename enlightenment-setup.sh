@@ -47,7 +47,6 @@ yaourt -S acroread
 # on a laptop or other device where you want to set up wireless
 # sudo pacman -S network-manager-applet
 # sudo systemctl enable NetworkManager.service
-# echo 5 - Add Network to Startup Applications >> enlightenment-post-install.txt
 
 
 echo :::
