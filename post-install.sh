@@ -30,10 +30,19 @@ mkswap /swapfile
 swapon /swapfile
 echo /swapfile none swap defaults 0 0 >> /etc/fstab
 
+echo :::
+echo You need to uncomment 2 lines in /etc/pacman.conf to enable multilib if you are on a 64-bit system.
+echo You may also want to configure a few other options there.
+echo launching nano in 5 seconds...
+sleep 5
+nano /etc/pacman.conf
+
+echo :::
+echo Updating repositories for multi-lib...
+pacman -Syyu
+
 # install essentials for a GUI environment
 echo :::
-echo Making sure all packages are up to date...
-pacman -Syu
 echo Installing common packages
 pacman -S alsa-utils dkms mesa rsync sudo ttf-dejavu wget xorg-server xorg-server-utils xorg-xinit $VIDEO $LAPTOP
 echo Installing needed base-devel packages for AUR builds
@@ -61,17 +70,6 @@ cd /home/$USER2
 wget https://raw.github.com/brandonlichtenwalner/ai/master/enlightenment-post-install.txt
 chown $USER2:$USER2 enlightenment-post-install.txt
 cd /
-
-echo :::
-echo You need to uncomment 2 lines in /etc/pacman.conf to enable multilib if you are on a 64-bit system.
-echo You may also want to configure a few other options there.
-echo launching nano in 5 seconds...
-sleep 5
-nano /etc/pacman.conf
-
-echo :::
-echo Updating repositories for multi-lib...
-pacman -Syyu
 
 echo :::
 echo You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo.
