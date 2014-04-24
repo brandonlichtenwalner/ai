@@ -69,7 +69,7 @@ chown $USER1:$USER1 enlightenment-post-install.txt
 cd /home/$USER2
 wget https://raw.github.com/brandonlichtenwalner/ai/master/enlightenment-post-install.txt
 chown $USER2:$USER2 enlightenment-post-install.txt
-cd /
+cd
 
 echo :::
 echo You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo.
