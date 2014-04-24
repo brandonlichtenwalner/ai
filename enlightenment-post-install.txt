@@ -18,5 +18,4 @@ numlockx on
 PATH="${PATH}:~/bin"
 
 Optional, depending on system
-5 - Set up Network Manager Applet: Settings > All > Apps > Startup Applications: add Network
-6 - Set up printer(s): Settings > All > System > Print Settings | may also need to add user(s) to "lp" group
+5 - Set up printer(s): Settings > All > System > Print Settings | may also need to add user(s) to "lp" group
