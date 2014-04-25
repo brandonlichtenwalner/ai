@@ -25,7 +25,7 @@ hwclock --systohc --utc
 echo $HOSTNAME > /etc/hostname
 
 echo About to enable dhcpcd.service
-echo If using wireless or a non-standard netwwork config hit Control+Z now to halt the script and finish the process manually.
+echo If using wireless or a non-standard network config (during setup) hit Control+Z now to halt the script and finish the process manually.
 sleep $SLEEPTIME
 systemctl enable dhcpcd.service
 
