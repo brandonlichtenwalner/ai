@@ -1,1 +1,0 @@
-Consider moving from Yaourt to Pacaur and then using Argon as an update notifier (primarily for the laptop).
