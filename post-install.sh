@@ -56,18 +56,18 @@ systemctl enable dkms
 
 # I am used to Yaourt as a front-end to the AUR, but you don't want to makepkg as root
 cd /home/$USER1
-wget https://raw.github.com/brandonlichtenwalner/ai/master/yaourt-setup.sh
+wget https://raw.github.com/brandonlichtenwalner/arch-install/master/misc/yaourt-setup.sh
 chmod +x yaourt-setup.sh
 chown $USER1:$USER1 yaourt-setup.sh
 # Also grab the script to set up the GUI environment and applications
-wget https://raw.github.com/brandonlichtenwalner/ai/master/enlightenment-setup.sh
+wget https://raw.github.com/brandonlichtenwalner/arch-install/master/enlightenment/enlightenment-setup.sh
 chmod +x enlightenment-setup.sh
 chown $USER1:$USER1 enlightenment-setup.sh
 # And grab the post-install.txt file for each user
-wget https://raw.github.com/brandonlichtenwalner/ai/master/enlightenment-post-install.txt
+wget https://raw.github.com/brandonlichtenwalner/arch-install/master/enlightenment/enlightenment-post-install.txt
 chown $USER1:$USER1 enlightenment-post-install.txt
 cd /home/$USER2
-wget https://raw.github.com/brandonlichtenwalner/ai/master/enlightenment-post-install.txt
+wget https://raw.github.com/brandonlichtenwalner/arch-install/master/enlightenment/enlightenment-post-install.txt
 chown $USER2:$USER2 enlightenment-post-install.txt
 cd
 
