@@ -16,10 +16,12 @@ LAPTOP=""
 
 # the first user is assumed to be an admin user
 useradd -m -G users,games,wheel -s /bin/bash $USER1
+echo :::
 echo Set password for $USER1
 passwd $USER1
 
 useradd -m -G users,games -s /bin/bash $USER2
+echo:::
 echo Set password for $USER2
 passwd $USER2
 
@@ -31,10 +33,9 @@ swapon /swapfile
 echo /swapfile none swap defaults 0 0 >> /etc/fstab
 
 echo :::
-echo You need to uncomment 2 lines in /etc/pacman.conf to enable multilib if you are on a 64-bit system.
+echo You need to uncomment 2 lines in /etc/pacman.conf to enable multilib assuming you are on a 64-bit system (and want/need to use multilib).
 echo You may also want to configure a few other options there.
-echo launching nano in 5 seconds...
-sleep 5
+read -p "Press [Enter] to continue on to editing pacman.conf"
 nano /etc/pacman.conf
 
 echo :::
@@ -45,6 +46,7 @@ pacman -Syyu
 echo :::
 echo Installing common packages
 pacman -S alsa-utils dkms mesa rsync sudo ttf-dejavu wget xorg-server xorg-server-utils xorg-xinit $VIDEO $LAPTOP
+echo:::
 echo Installing needed base-devel packages for AUR builds
 pacman -S --needed base-devel
 
@@ -74,8 +76,7 @@ cd
 echo :::
 echo You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo.
 echo You may also want to add: Defaults:$USER1 timestamp_timeout=20 to the end of the file.
-echo launching visudo in 10 seconds...
-sleep 10
+read -p "Press [Enter] to launch visudo to edit the sudoers file."
 EDITOR=nano visudo
 
 # I never really got into vi...
