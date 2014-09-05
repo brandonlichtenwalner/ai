@@ -93,11 +93,14 @@ pacman -S --needed base-devel
 
 systemctl enable dkms
 
-# I am used to Yaourt as a front-end to the AUR, but you don't want to makepkg as root
-cd /home/$USER1
-wget https://github.com/brandonlichtenwalner/arch-install/master/misc/yaourt-setup.sh
-chmod +x yaourt-setup.sh
-chown $USER1:$USER1 yaourt-setup.sh
+echo :::
+echo You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo.
+echo You may also want to add: Defaults:$USER1 timestamp_timeout=20 to the end of the file.
+read -p "Press [Enter] to launch visudo to edit the sudoers file."
+EDITOR=nano visudo
+
+# I never really got into vi...
+echo EDITOR=nano >> /etc/environment
 
 echo :::
 PS3='Please choose your graphical environment:  '
@@ -121,10 +124,9 @@ do
     esac
 done
 
-# Also grab the script to set up the GUI environment and applications
+# Grab the script to set up the GUI environment and run it
 wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-setup.sh
-chmod +x $ENVIRONMENT-setup.sh
-chown $USER1:$USER1 $ENVIRONMENT-setup.sh
+source $ENVIRONMENT-setup.sh
 
 # And grab the post-install.txt file for each user
 wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt
@@ -136,15 +138,6 @@ if [ "$USER2" != "" ]; then
 fi
 
 cd
-
-echo :::
-echo You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo.
-echo You may also want to add: Defaults:$USER1 timestamp_timeout=20 to the end of the file.
-read -p "Press [Enter] to launch visudo to edit the sudoers file."
-EDITOR=nano visudo
-
-# I never really got into vi...
-echo EDITOR=nano >> /etc/environment
 
 echo :::
 echo "Type 'vbox' if this is a Virtualbox guest install or just [Enter] otherwise: "
@@ -170,7 +163,17 @@ if [ "$VBOX" ="vbox" ]; then
 
   echo :::
   echo If there were no errors Virtualbox guest-additions are now ready.
+else
+  # grab the desktop-install file (both environments use GTK for now) and run it
+  wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/desktop-install-gtk.sh
+  source desktop-install-gtk.sh
 fi
+
+# I am used to Yaourt as a front-end to the AUR, but you don't want to makepkg as root
+cd /home/$USER1
+wget https://github.com/brandonlichtenwalner/arch-install/master/misc/yaourt-setup.sh
+chmod +x yaourt-setup.sh
+chown $USER1:$USER1 yaourt-setup.sh
 
 echo :::
 echo Remember to run alsamixer to unmute your sound.
