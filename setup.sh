@@ -1,13 +1,12 @@
 #!/bin/bash
 
-# This script follows https://wiki.archlinux.org/index.php/Beginners'_guide
-# Before running it, make sure you have:
-# 1) Established (and tested) an internet connection
-# 2) Partitioned the disk (and changed the root partition below, if necessary)
-
+echo "This script follows https://wiki.archlinux.org/index.php/Beginners'_guide"
+echo Before running it, make sure you have:
+echo   1) Established (and tested) an internet connection
+echo   2) Partitioned the disk (and changed the root partition below, if necessary)
 echo It will take a few minutes--or longer on a slow connection--for pacstrap to run,
 echo so be patient and do not touch anything if you want this script to finish successfully!
-read -p "Press [Enter] to begin initial setup."
+read -p "Press [Enter] to begin initial setup with a single ext4 partition on /dev/sda1"
 
 mkfs.ext4 /dev/sda1
 mount /dev/sda1 /mnt
@@ -20,10 +19,10 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 cd /mnt
 echo :::
 echo Grabbing the chroot and post-installation scripts...
-wget https://raw.github.com/brandonlichtenwalner/arch-install/master/chrooted.sh
+wget https://github.com/brandonlichtenwalner/arch-install/raw/master/chrooted.sh
 chmod +x chrooted.sh
 cd /mnt/root
-wget https://raw.github.com/brandonlichtenwalner/arch-install/master/post-install.sh
+wget https://github.com/brandonlichtenwalner/arch-install/raw/master/post-install.sh
 chmod +x post-install.sh
 cd
 
