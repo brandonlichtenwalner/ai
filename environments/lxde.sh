@@ -1,10 +1,10 @@
 #!/bin/bash
 
 yaourt -Syua
-sudo pacman -S cairo-dock-plugins dosfstools ffmpeg gnome-menus gvfs gvfs-smb lxde ntfs-3g smbclient xcompmgr
+sudo pacman -S cairo-dock-plugins dosfstools ffmpeg gnome-menus gnome-icon-theme gvfs gvfs-smb libical lxappearance lxappearance-obconf lxde-common lxde-icon-theme lxdm lxinput lxmenu-data lxpolkit lxrandr lxsession lxtask lxterminal menu-cache openbox ntfs-3g pcmanfm smbclient xcompmgr
 
 # additional cairo-dock plugins
-# sudo pacman -S libical lm_sensors
+# sudo pacman -S lm_sensors
 
 # Cairo-Dock Tweak thread for LXDE
 # http://www.remastersys.com/forums/index.php?topic=1734.0
