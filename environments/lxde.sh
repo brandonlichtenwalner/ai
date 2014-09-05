@@ -2,28 +2,29 @@
 
 # Custom LXDE with Cairo-Dock
 
-# Set up to run as a normal user with sudo
-
-echo :::
-echo Making sure all packages are up to date...
-yaourt -Syua
-
 echo :::
 echo Installing custom LXDE environment
-sudo pacman -S cairo-dock-plugins gnome-icon-theme-extras gnome-menus gvfs libical lxappearance lxappearance-obconf lxde-common lxde-icon-theme lxdm lxinput lxmenu-data lxpolkit lxrandr lxsession lxtask lxterminal menu-cache openbox pcmanfm xcompmgr
-
-sudo systemctl enable lxdm
-
-mkdir ~/.config/lxsession
-mkdir ~/.config/lxsession/LXDE
-echo '@xcompmgr -c' >> ~/.config/lxsession/LXDE/autostart
-echo '@cairo-dock -o' >> ~/.config/lxsession/LXDE/autostart
-
-echo :::
-echo Note: The LXDE Icon is located at /usr/share/lxde/images/lxde-icon.png
-
-# Cairo-Dock Tweak thread for LXDE
-# http://www.remastersys.com/forums/index.php?topic=1734.0
+pacman -S cairo-dock-plugins gnome-icon-theme-extras gnome-menus gvfs libical lxappearance lxappearance-obconf lxde-common lxde-icon-theme lxdm lxinput lxmenu-data lxpolkit lxrandr lxsession lxtask lxterminal menu-cache openbox pcmanfm xcompmgr
 
 # To enable system monitor plugin in Cairo-Dock
 # sudo pacman -S lm_sensors
+
+systemctl enable lxdm
+
+echo :::
+echo "Configuring xcompmgr and cairo-dock to autostart for user(s)..."
+
+mkdir /home/$USER1/.config/lxsession
+mkdir /home/$USER1/.config/lxsession/LXDE
+echo '@xcompmgr -c' >> /home/$USER1/.config/lxsession/LXDE/autostart
+echo '@cairo-dock -c' >> /home/$USER1/.config/lxsession/LXDE/autostart
+
+if [ "$USER2" != "" ]; then
+  mkdir /home/$USER2/.config/lxsession
+  mkdir /home/$USER2/.config/lxsession/LXDE
+  echo '@xcompmgr -c' >> /home/$USER2/.config/lxsession/LXDE/autostart
+  echo '@cairo-dock -c' >> /home/$USER2/.config/lxsession/LXDE/autostart
+fi
+
+echo :::
+echo "LXDE setup complete."
