@@ -9,6 +9,7 @@ pacman -S arandr enlightenment gnome-icon-theme-extras gnome-keyring gnome-theme
 systemctl enable lightdm
 
 echo :::
+echo Enlightenment setup complete.
 echo Please see the enlightenment-post-install.txt file for additional--per user--configuration steps.
 
 rm enlightenment-setup.sh
