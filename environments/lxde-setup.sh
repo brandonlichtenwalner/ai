@@ -28,3 +28,6 @@ fi
 
 echo :::
 echo "LXDE setup complete."
+echo "Please see the lxde-post-install.txt file for additional--per user--configuration steps, if any."
+
+rm lxde-setup.sh
