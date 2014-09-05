@@ -1,7 +1,7 @@
 #!/bin/bash
 
 yaourt -Syua
-sudo pacman -S cairo-dock dosfstools ffmpeg gvfs gvfs-smb lxde ntfs-3g smbclient xcompmgr
+sudo pacman -S cairo-dock-plugins dosfstools ffmpeg gvfs gvfs-smb lxde ntfs-3g smbclient xcompmgr
 
 # additional cairo-dock plugins
 # sudo pacman -S libical lm_sensors
