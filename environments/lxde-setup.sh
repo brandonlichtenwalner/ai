@@ -16,14 +16,16 @@ echo "Configuring xcompmgr and cairo-dock to autostart for user(s)..."
 
 mkdir /home/$USER1/.config/lxsession
 mkdir /home/$USER1/.config/lxsession/LXDE
-echo '@xcompmgr -c' >> /home/$USER1/.config/lxsession/LXDE/autostart
+echo '@xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55' >> /home/$USER1/.config/lxsession/LXDE/autostart
 echo '@cairo-dock -c' >> /home/$USER1/.config/lxsession/LXDE/autostart
+chown -R $USER1:$USER1 /home/$USER1/.config/lxsession
 
 if [ "$USER2" != "" ]; then
   mkdir /home/$USER2/.config/lxsession
   mkdir /home/$USER2/.config/lxsession/LXDE
-  echo '@xcompmgr -c' >> /home/$USER2/.config/lxsession/LXDE/autostart
+  echo '@xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55' >> /home/$USER2/.config/lxsession/LXDE/autostart
   echo '@cairo-dock -c' >> /home/$USER2/.config/lxsession/LXDE/autostart
+  chown -R $USER2:$USER2 /home/$USER2/.config/lxsession
 fi
 
 echo :::
