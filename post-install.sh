@@ -61,17 +61,20 @@ else
   passwd $USER2
 fi
 
-echo :::
-echo "Enter size (512M is recommended) for swapfile or 0 to skip creating one:  "
-read SWAPSIZE
-
-if [ $SWAPSIZE != 0 ]; then
-  fallocate -l $SWAPSIZE /swapfile
-  chmod 600 /swapfile
-  mkswap /swapfile
-  swapon /swapfile
-  echo "/swapfile none swap defaults 0 0" >> /etc/fstab
-fi
+# I am back of the opinion that a dedicated swap partition is the way to go
+# this is particularly the case if using btrfs as a traditional swap file (as below) will not work
+#  
+#echo :::
+#echo "Enter size (512M is recommended) for swapfile or 0 to skip creating one:  "
+#read SWAPSIZE
+#
+#if [ $SWAPSIZE != 0 ]; then
+#  fallocate -l $SWAPSIZE /swapfile
+#  chmod 600 /swapfile
+#  mkswap /swapfile
+#  swapon /swapfile
+#  echo "/swapfile none swap defaults 0 0" >> /etc/fstab
+#fi
 
 echo :::
 echo You need to uncomment 2 lines in /etc/pacman.conf to enable multilib assuming you are on a 64-bit system (and want/need to use multilib).
