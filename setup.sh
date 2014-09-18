@@ -3,14 +3,33 @@
 echo "This script follows https://wiki.archlinux.org/index.php/Beginners'_guide"
 echo Before running it, make sure you have:
 echo   1) Established (and tested) an internet connection
-echo   2) Partitioned the disk (and changed the root partition below, if necessary)
+echo   2) Partitioned the disk (note: this script is written for a single disk setup with a root and swap partition)
+# By default, I recommend a SWAP (half max RAM supported by mobo) and root (rest of the space) partition
+# See: https://wiki.archlinux.org/index.php/Suspend_and_hibernate#About_swap_partition.2Ffile_size for SWAP size logic
+read -p "Press [Enter] to begin."
+
+echo :::
+echo "Which filesystem do you plan to use for root (/)?"
+echo "Enter the option (e.g. ext4 or btrfs) for mkfs: "
+read ROOTFS
+
+echo :::
+echo "Enter your root (/) partition (e.g. /dev/sda1): "
+read ROOTPART
+
+mkfs.$ROOTFS $ROOTPART
+mount $ROOTPART /mnt
+
+echo :::
+echo "Enter your swap partition (e.g. /dev/sda2): "
+read SWAPPART
+
+mkswap $SWAPPART
+swapon $SWAPPART
+
+echo :::
 echo It will take a few minutes--or longer on a slow connection--for pacstrap to run,
 echo so be patient and do not touch anything if you want this script to finish successfully!
-read -p "Press [Enter] to begin initial setup with a single ext4 partition on /dev/sda1"
-
-mkfs.ext4 /dev/sda1
-mount /dev/sda1 /mnt
-
 pacstrap /mnt base
 
 genfstab -U -p /mnt >> /mnt/etc/fstab
