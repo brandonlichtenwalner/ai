@@ -9,7 +9,7 @@ HOSTNAME=arch
 TZ=America/New_York
 
 echo :::
-echo Preparing to open /etc/locale.gen for editing--you need to uncomment $LANGUAGE
+echo "Preparing to open /etc/locale.gen for editing--you need to uncomment $LANGUAGE"
 read -p "Press [Enter] to continue."
 nano /etc/locale.gen
 
@@ -24,20 +24,20 @@ hwclock --systohc --utc
 echo $HOSTNAME > /etc/hostname
 
 echo :::
-echo About to enable dhcpcd.service
-echo If using wireless or a non-standard network config (during setup) hit Control+Z now to halt the script and finish the process manually.
+echo "About to enable dhcpcd.service"
+echo "If using wireless or a non-standard network config (during setup) hit Control+Z now to halt the script and finish the process manually."
 read -p "Press [Enter] to continue."
 systemctl enable dhcpcd.service
 
 echo :::
-echo About to run mkinitcpio
-echo If you need to add any HOOKS--e.g. RAID, LVM, or USB boot--hit Control+Z now to halt the script and finish the process manually.
+echo "About to run mkinitcpio"
+echo "If you need to add any HOOKS--e.g. RAID, LVM, or USB boot--hit Control+Z now to halt the script and finish the process manually."
 read -p "Press [Enter] to continue."
 # nano /etc/mkinitcpio.conf
 mkinitcpio -p linux
 
 echo :::
-echo Set the root password...
+echo "Set the root password..."
 passwd
 
 echo :::
