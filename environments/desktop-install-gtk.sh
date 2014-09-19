@@ -24,8 +24,7 @@ sudo sh -c "echo \"vboxdrv\" > /etc/modules-load.d/virtualbox.conf"
 # Install all of the extras for chromium plus a few other AUR packages
 echo :::
 echo Installing Chromium plugins from AUR
-echo Tip: remove the cleanup step from the first .install file so the Chrome binary does not need to be downloaded twice
-yaourt -S chromium-pepper-flash chromium-libpdf google-talkplugin
+yaourt -S chromium-pepper-flash google-talkplugin
 #echo :::
 #echo Installing Google Music Manager from AUR
 #yaourt -S google-musicmanager
