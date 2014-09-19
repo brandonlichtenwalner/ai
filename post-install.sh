@@ -81,8 +81,8 @@ fi
 #fi
 
 echo :::
-echo You need to uncomment 2 lines in /etc/pacman.conf to enable multilib assuming you are on a 64-bit system (and want/need to use multilib).
-echo You may also want to configure a few other options there.
+echo "You need to uncomment 2 lines in /etc/pacman.conf to enable multilib assuming you are on a 64-bit system (and want/need to use multilib)."
+echo "You may also want to configure a few other options there."
 read -p "Press [Enter] to continue on to editing pacman.conf"
 nano /etc/pacman.conf
 
@@ -92,10 +92,10 @@ pacman -Syyu
 
 # install essentials for a GUI environment
 echo :::
-echo Installing common packages for GUI environment, video driver, and extra packages specified
+echo "Installing common packages for GUI environment, video driver, and extra packages specified"
 pacman -S alsa-utils dkms mesa rsync sudo ttf-dejavu wget xorg-server xorg-server-utils xorg-xinit $VIDEO $EXTRA
 echo:::
-echo Installing needed base-devel packages for AUR builds
+echo "Installing needed base-devel packages for AUR builds"
 pacman -S --needed base-devel
 
 systemctl enable dkms
