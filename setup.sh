@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo "This script follows https://wiki.archlinux.org/index.php/Beginners'_guide"
-echo Before running it, make sure you have:
-echo   1) Established (and tested) an internet connection
-echo   2) Partitioned the disk (note: this script is written for a single disk setup with a root and swap partition)
+echo "Before running it, make sure you have:"
+echo " 1) Established (and tested) an internet connection"
+echo " 2) Partitioned the disk (note: this script is written for a single disk setup with a root and swap partition)"
 # By default, I recommend a SWAP (half max RAM supported by mobo) and root (rest of the space) partition
 # See: https://wiki.archlinux.org/index.php/Suspend_and_hibernate#About_swap_partition.2Ffile_size for SWAP size logic
 read -p "Press [Enter] to begin."
