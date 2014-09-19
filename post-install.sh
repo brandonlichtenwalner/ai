@@ -145,14 +145,16 @@ if [ "$USER2" != "" ]; then
   cd /home/$USER2
   wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt
   chown $USER2:$USER2 $ENVIRONMENT-post-install.txt
+  cd
 fi
-
-cd
 
 echo :::
 echo "Type 'vbox' if this is a Virtualbox guest install or just [Enter] otherwise: "
 read VBOX
 
+###
+# THIS IF STATEMENT DOES NOT WORK, FIX IT!!!
+###
 if [ "$VBOX" ="vbox" ]; then
   echo :::
   echo Updating packages and installing virtualbox-guest-utils
@@ -181,9 +183,10 @@ fi
 
 # I am used to Yaourt as a front-end to the AUR, but you don't want to makepkg as root
 cd /home/$USER1
-wget https://github.com/brandonlichtenwalner/arch-install/master/misc/yaourt-setup.sh
+wget https://github.com/brandonlichtenwalner/arch-install/raw/master/misc/yaourt-setup.sh
 chmod +x yaourt-setup.sh
 chown $USER1:$USER1 yaourt-setup.sh
+cd
 
 echo :::
 echo Remember to run alsamixer to unmute your sound.
