@@ -8,25 +8,29 @@ echo Beginning post installation configuration...
 
 echo :::
 PS3='Please choose a video driver: '
-options=("vesa" "nouveau" "ati" "Quit")
+options=("vesa" "nouveau" "ati" "none")
+select opt in "${options[@]}"
 do
     case $opt in
         "vesa")
             VIDEO="xf86-video-vesa"
             echo :::
             echo You chose vesa.
+            break
             ;;
         "nouveau")
             VIDEO="xf86-video-nouveau lib32-nouveau-dri"
             echo :::
             echo You chose nouveau.
+            break
             ;;
         "ati")
             VIDEO="xf86-video-ati lib32-ati-dri"
             echo :::
             echo You chose ati.
+            break
             ;;
-        "Quit")
+        "none")
             break
             ;;
         *) echo invalid option;;
@@ -106,21 +110,24 @@ EDITOR=nano visudo
 echo EDITOR=nano >> /etc/environment
 
 echo :::
-PS3='Please choose your graphical environment:  '
-options=("enlightenment" "lxde" "Quit")
+PS3='Please choose your graphical environment: '
+options=("enlightenment" "lxde" "none")
+select opt in "${options[@]}"
 do
     case $opt in
         "enlightenment")
             ENVIRONMENT=enlightenment
             echo :::
             echo You chose $ENVIRONMENT.
+            break
             ;;
         "lxde")
             ENVIRONMENT=lxde
             echo :::
             echo You chose $ENVIRONMENT.
+            break
             ;;
-        "Quit")
+        "none")
             break
             ;;
         *) echo invalid option;;
