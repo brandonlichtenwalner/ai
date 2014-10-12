@@ -8,7 +8,7 @@ echo Beginning post installation configuration...
 
 echo :::
 PS3='Please choose a video driver: '
-options=("vesa" "nouveau" "ati" "none")
+options=("vesa" "nouveau" "ati" "vbox" "nogui")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -30,7 +30,16 @@ do
             echo You chose ati.
             break
             ;;
-        "none")
+        "vbox")
+            VIDEO=""
+            echo :::
+            echo You chose vbox for a VirtualBox install. No additional video driver will be installed.
+            break
+            ;;
+        "nogui")
+            VIDEO="nogui"
+            echo :::
+            echo You chose not to install a GUI.
             break
             ;;
         *) echo invalid option;;
@@ -90,13 +99,17 @@ echo :::
 echo Updating repositories...
 pacman -Syyu
 
-# install essentials for a GUI environment
+# install bare essentials
 echo :::
-echo "Installing common packages for GUI environment, video driver, and extra packages specified"
-pacman -S alsa-utils dkms mesa rsync sudo ttf-dejavu wget xorg-server xorg-server-utils xorg-xinit $VIDEO $EXTRA
-echo:::
-echo "Installing needed base-devel packages for AUR builds"
-pacman -S --needed base-devel
+echo "Installing bare essentials and extra specified packages..."
+pacman -S dkms rsync sudo wget $EXTRA
+
+if [ "$VIDEO" != "nogui" ]; then
+    # install essentials for a GUI environment
+    echo :::
+    echo "Installing common packages for GUI environment and selected video driver"
+    pacman -S alsa-utils mesa ttf-dejavu xorg-server xorg-server-utils xorg-xinit $VIDEO
+fi
 
 systemctl enable dkms
 
@@ -111,7 +124,7 @@ echo EDITOR=nano >> /etc/environment
 
 echo :::
 PS3='Please choose your graphical environment: '
-options=("enlightenment" "lxde" "none")
+options=("enlightenment" "lxde" "mate" "none")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -127,7 +140,15 @@ do
             echo You chose $ENVIRONMENT.
             break
             ;;
+        "mate")
+            ENVIRONMENT=mate
+            echo :::
+            echo You chose $ENVIRONMENT.
+            break
+            ;;
         "none")
+            echo :::
+            echo You chose no graphical environment.
             break
             ;;
         *) echo invalid option;;
@@ -148,14 +169,8 @@ if [ "$USER2" != "" ]; then
   cd
 fi
 
-echo :::
-echo "Type 'vbox' if this is a Virtualbox guest install or just [Enter] otherwise: "
-read VBOX
-
-###
-# THIS IF STATEMENT DOES NOT WORK, FIX IT!!!
-###
-if [ "$VBOX" ="vbox" ]; then
+# an empty string for video means vbox was selected during video driver selection
+if [ "$VIDEO" = "" ]; then
   echo :::
   echo Updating packages and installing virtualbox-guest-utils
   pacman -Syu virtualbox-guest-utils
@@ -182,6 +197,10 @@ else
 fi
 
 # I am used to Yaourt as a front-end to the AUR, but you don't want to makepkg as root
+echo:::
+echo "Installing needed base-devel packages for AUR builds"
+pacman -S --needed base-devel
+
 cd /home/$USER1
 wget https://github.com/brandonlichtenwalner/arch-install/raw/master/misc/yaourt-setup.sh
 chmod +x yaourt-setup.sh
