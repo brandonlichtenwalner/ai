@@ -23,7 +23,7 @@ mount $ROOTPART /mnt
 echo :::
 echo "Enter your swap partition (e.g. /dev/sda2) or 'none': "
 read SWAPPART
-if $SWAPPART != "none"
+if [ "$SWAPPART" != "none" ]; then
   mkswap $SWAPPART
   swapon $SWAPPART
 fi
