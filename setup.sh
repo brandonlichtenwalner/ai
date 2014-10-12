@@ -21,11 +21,12 @@ mkfs.$ROOTFS $ROOTPART
 mount $ROOTPART /mnt
 
 echo :::
-echo "Enter your swap partition (e.g. /dev/sda2): "
+echo "Enter your swap partition (e.g. /dev/sda2) or 'none': "
 read SWAPPART
-
-mkswap $SWAPPART
-swapon $SWAPPART
+if $SWAPPART != "none"
+  mkswap $SWAPPART
+  swapon $SWAPPART
+fi
 
 echo :::
 echo It will take a few minutes--or longer on a slow connection--for pacstrap to run,
