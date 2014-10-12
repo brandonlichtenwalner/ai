@@ -31,7 +31,7 @@ do
             break
             ;;
         "vbox")
-            VIDEO=""
+            VIDEO="vbox"
             echo :::
             echo You chose vbox for a VirtualBox install. No additional video driver will be installed.
             break
@@ -104,7 +104,7 @@ echo :::
 echo "Installing bare essentials and extra specified packages..."
 pacman -S dkms rsync sudo wget $EXTRA
 
-if [ "$VIDEO" != "nogui" ]; then
+if [ "$VIDEO" != "nogui" and "$VIDEO" != "vobx" ]; then
     # install essentials for a GUI environment
     echo :::
     echo "Installing common packages for GUI environment and selected video driver"
@@ -130,23 +130,27 @@ do
     case $opt in
         "enlightenment")
             ENVIRONMENT=enlightenment
+            DESKTOP=gtk
             echo :::
             echo You chose $ENVIRONMENT.
             break
             ;;
         "lxde")
             ENVIRONMENT=lxde
+            DESKTOP=gtk
             echo :::
             echo You chose $ENVIRONMENT.
             break
             ;;
         "mate")
             ENVIRONMENT=mate
+            DESKTOP=mate
             echo :::
             echo You chose $ENVIRONMENT.
             break
             ;;
         "none")
+            DESKTOP=none
             echo :::
             echo You chose no graphical environment.
             break
@@ -169,8 +173,8 @@ if [ "$USER2" != "" ]; then
   cd
 fi
 
-# an empty string for video means vbox was selected during video driver selection
-if [ "$VIDEO" = "" ]; then
+# depnding on if this is a virtualbox install...
+if [ "$VIDEO" = "vbox" ]; then
   echo :::
   echo Updating packages and installing virtualbox-guest-utils
   pacman -Syu virtualbox-guest-utils
@@ -191,25 +195,56 @@ if [ "$VIDEO" = "" ]; then
   echo :::
   echo If there were no errors Virtualbox guest-additions are now ready.
 else
-  # grab the desktop-install file (both environments use GTK for now) and run it
-  wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/desktop-install-gtk.sh
-  source desktop-install-gtk.sh
+  # grab the appropriate desktop-install file and run it
+  if [ "$DESKTOP" != "none" ]; then
+    wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/desktop-install-$DESKTOP.sh
+    source desktop-install-$DESKTOP.sh
+  fi
 fi
 
-# I am used to Yaourt as a front-end to the AUR, but you don't want to makepkg as root
-echo:::
-echo "Installing needed base-devel packages for AUR builds"
-pacman -S --needed base-devel
-
-cd /home/$USER1
-wget https://github.com/brandonlichtenwalner/arch-install/raw/master/misc/yaourt-setup.sh
-chmod +x yaourt-setup.sh
-chown $USER1:$USER1 yaourt-setup.sh
-cd
-
 echo :::
-echo Remember to run alsamixer to unmute your sound.
-echo Then log in as $USER1 and run yaourt-setup.sh to install Yaourt.
+PS3='Please choose your AUR helper: '
+options=("yaourt" "none")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "yaourt")
+            AUR=yaourt
+            echo :::
+            echo You chose $AUR.
+            break
+            ;;
+        "none")
+            AUR=none
+            echo :::
+            echo You chose no AUR helper.
+            break
+            ;;
+        *) echo invalid option;;
+    esac
+done
+
+if [ "$AUR" != "none" ]; then
+    echo "Installing needed base-devel packages for AUR builds"
+    pacman -S --needed base-devel
+    
+    # it is not good to mkpkg as root, so...
+    echo :::
+    echo Downloading $AUR setup file.
+    cd /home/$USER1
+    wget https://github.com/brandonlichtenwalner/arch-install/raw/master/misc/$AUR-setup.sh
+    chmod +x $AUR-setup.sh
+    chown $USER1:$USER1 $AUR-setup.sh
+    cd
+
+    echo :::
+    echo Remember to log in as $USER1 and run $AUR-setup.sh to install $AUR.
+fi
+
+if [ "$VIDEO" != "nogui" and "$VIDEO" != "vobx" ]; then
+  echo :::
+  echo "Don't forget to run alsamixer to unmute your sound."
+fi
 
 echo :::
 echo Cleaning up: removing post-install.sh
