@@ -211,4 +211,7 @@ echo :::
 echo Remember to run alsamixer to unmute your sound.
 echo Then log in as $USER1 and run yaourt-setup.sh to install Yaourt.
 
+echo :::
+echo Cleaning up: removing post-install.sh
+read -p "Press [Enter] to continue or [CTRL+Z] to keep the file."
 rm post-install.sh
