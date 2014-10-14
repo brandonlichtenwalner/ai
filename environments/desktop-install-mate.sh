@@ -2,7 +2,7 @@
 
 echo :::
 echo Installing applications not included with mate-extra with useful optional add-ons
-sudo pacman -S asunder brasero chromium dosfstools ffmpeg geany-plugins gvfs-smb hunspell-en hyphen-en libdvdcss libreoffice-still-calc libreoffice-still-en-US libreoffice-still-gnome libreoffice-still-impress libreoffice-still-writer mumble mythes mythes-en ntfs-3g p7zip qt4 shotwell shutter smbclient steam system-config-printer transmission-gtk unrar unzip virtualbox-guest-iso virtualbox-host-modules vlc vorbis-tools
+sudo pacman -S asunder brasero chromium ffmpeg geany-plugins gvfs-smb hunspell-en hyphen-en libdvdcss libreoffice-still-calc libreoffice-still-en-US libreoffice-still-gnome libreoffice-still-impress libreoffice-still-writer mumble mythes mythes-en ntfs-3g p7zip qt4 shotwell shutter smbclient steam system-config-printer transmission-gtk unrar unzip virtualbox-guest-iso virtualbox-host-modules vlc vorbis-tools
 
 # for general desktop printing (i.e. where there is not already a print server set up elsewhere)
 # assumes you are using an HP printer
