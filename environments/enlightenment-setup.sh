@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Enlightenment with LightDM
 
