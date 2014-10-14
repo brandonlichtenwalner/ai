@@ -102,7 +102,7 @@ pacman -Syyu
 # install bare essentials
 echo :::
 echo "Installing bare essentials and extra specified packages..."
-pacman -S dkms rsync sudo wget $EXTRA
+pacman -S btrfs-progs dkms dosfstools rsync sudo wget $EXTRA
 
 if [ "$VIDEO" != "nogui" and "$VIDEO" != "vobx" ]; then
     # install essentials for a GUI environment
