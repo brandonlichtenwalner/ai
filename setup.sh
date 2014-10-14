@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "This script follows https://wiki.archlinux.org/index.php/Beginners'_guide"
 echo "Before running it, make sure you have:"
