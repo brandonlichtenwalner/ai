@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo :::
 echo Installing applications for a complete GTK-based desktop experience with useful optional add-ons
