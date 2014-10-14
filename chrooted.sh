@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # This script follows https://wiki.archlinux.org/index.php/Beginners'_guide
 # Before running it, make sure you have already run setup.sh (or otherwise performed those steps).
