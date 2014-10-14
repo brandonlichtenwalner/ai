@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # everyone uses the AUR, right?
 mkdir argon-setup
