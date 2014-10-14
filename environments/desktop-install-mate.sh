@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo :::
 echo Installing applications not included with mate-extra with useful optional add-ons
