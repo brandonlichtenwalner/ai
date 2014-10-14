@@ -9,15 +9,15 @@ echo " 2) Partitioned the disk (note: this script is written for a single disk s
 read -p "Press [Enter] to begin."
 
 echo :::
-echo "Which filesystem do you plan to use for root (/)?"
-echo "Enter the option (e.g. ext4 or btrfs) for mkfs: "
-read ROOTFS
+echo "Time to choose a file system for root (/)."
+echo "Enter the full command (e.g. mkfs.btrfs -L myLabel /dev/sda /dev/sdb): "
+read MKFSCOMMAND
 
 echo :::
 echo "Enter your root (/) partition (e.g. /dev/sda1): "
 read ROOTPART
 
-mkfs.$ROOTFS $ROOTPART
+$MKFSCOMMAND $ROOTPART
 mount $ROOTPART /mnt
 
 echo :::
