@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Custom LXDE with Cairo-Dock
 
