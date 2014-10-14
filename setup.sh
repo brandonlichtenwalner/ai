@@ -15,6 +15,7 @@ read MKFSCOMMAND
 
 ### TODO
 ### update the code to allow for root on a Btrfs subvolume
+### https://wiki.archlinux.org/index.php/Btrfs#Installing_with_root_on_btrfs_subvolume
 echo :::
 echo "Enter your root (/) partition (e.g. /dev/sda1): "
 read ROOTPART
