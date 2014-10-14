@@ -13,6 +13,8 @@ echo "Time to choose a file system for root (/)."
 echo "Enter the full command (e.g. mkfs.btrfs -L myLabel /dev/sda /dev/sdb): "
 read MKFSCOMMAND
 
+### TODO
+### update the code to allow for root on a Btrfs subvolume
 echo :::
 echo "Enter your root (/) partition (e.g. /dev/sda1): "
 read ROOTPART
