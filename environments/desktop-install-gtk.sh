@@ -2,7 +2,7 @@
 
 echo :::
 echo Installing applications for a complete GTK-based desktop experience with useful optional add-ons
-sudo pacman -S alsa-plugins asunder baobab brasero chromium dosfstools ffmpeg file-roller geany-plugins gnome-calculator gnome-disk-utility gvfs-smb hunspell-en hyphen-en lib32-alsa-plugins libdvdcss libreoffice-calc libreoffice-en-US libreoffice-gnome libreoffice-impress libreoffice-writer mumble mythes mythes-en ntfs-3g p7zip qt4 shotwell shutter smbclient steam system-config-printer transmission-gtk unrar unzip virtualbox-guest-iso virtualbox-host-modules vlc vorbis-tools
+sudo pacman -S alsa-plugins asunder baobab brasero chromium ffmpeg file-roller geany-plugins gnome-calculator gnome-disk-utility gvfs-smb hunspell-en hyphen-en lib32-alsa-plugins libdvdcss libreoffice-calc libreoffice-en-US libreoffice-gnome libreoffice-impress libreoffice-writer mumble mythes mythes-en ntfs-3g p7zip qt4 shotwell shutter smbclient steam system-config-printer transmission-gtk unrar unzip virtualbox-guest-iso virtualbox-host-modules vlc vorbis-tools
 
 # for general desktop printing (i.e. where there is not already a print server set up elsewhere)
 # assumes you are using an HP printer
