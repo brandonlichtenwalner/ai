@@ -13,6 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
 
+# See https://bbs.archlinux.org/viewtopic.php?id=66822 for more details
+
 
 #Check for prerequisites
 (( $UID != 0 )) && echo "You need to run this script as root" && exit 1
