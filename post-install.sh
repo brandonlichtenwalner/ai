@@ -56,10 +56,10 @@ echo "Please enter a name for the first user:  "
 read USER1
 
 # the first user is made an admin user
-useradd -m -G users,games,wheel -s /bin/bash $USER1
+useradd -m -G users,games,wheel -s /bin/bash "$USER1"
 echo ":::"
 echo "Set password for $USER1"
-passwd $USER1
+passwd "$USER1"
 
 echo ":::"
 echo "Enter a name for the second user or press [Enter] to skip:  "
@@ -68,10 +68,10 @@ read USER2
 if [ "$USER2" = "" ]; then
   echo "No second user added."
 else
-  useradd -m -G users,games -s /bin/bash $USER2
+  useradd -m -G users,games -s /bin/bash "$USER2"
   echo ":::"
   echo "Set password for $USER2"
-  passwd $USER2
+  passwd "$USER2"
 fi
 
 # I am back of the opinion that a dedicated swap partition is the way to go
@@ -102,7 +102,7 @@ pacman -Syyu
 # install bare essentials
 echo ":::"
 echo "Installing bare essentials and extra specified packages..."
-pacman -S rsync sudo wget $EXTRA
+pacman -S rsync sudo wget "$EXTRA"
 
 echo ":::"
 echo "You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo."
@@ -183,21 +183,21 @@ if [ "$VIDEO" != "nogui" ]; then
 
     # grab the appropriate desktop-install file and run it
     if [ "$DESKTOP" != "none" ]; then
-        wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/desktop-install-$DESKTOP.sh
-        source desktop-install-$DESKTOP.sh
+        wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/desktop-install-$DESKTOP.sh"
+        source "desktop-install-$DESKTOP.sh"
     fi
     
     # Grab the script to set up the GUI environment and run it
-    wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-setup.sh
-    source $ENVIRONMENT-setup.sh
+    wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-setup.sh"
+    source "$ENVIRONMENT-setup.sh"
     
     # And grab the post-install.txt file for each user
-    wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt
-    chown $USER1:$USER1 $ENVIRONMENT-post-install.txt
+    wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt"
+    chown "$USER1:$USER1" "$ENVIRONMENT-post-install.txt"
     if [ "$USER2" != "" ]; then
-      cd /home/$USER2
-      wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt
-      chown $USER2:$USER2 $ENVIRONMENT-post-install.txt
+      cd /home/"$USER2"
+      wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt"
+      chown "$USER2:$USER2" "$ENVIRONMENT-post-install.txt"
       cd
     fi
 fi
@@ -237,10 +237,10 @@ if [ "$AUR" != "none" ]; then
     # it is not good to mkpkg as root, so...
     echo ":::"
     echo "Downloading $AUR setup file."
-    cd /home/$USER1
-    wget https://github.com/brandonlichtenwalner/arch-install/raw/master/misc/$AUR-setup.sh
-    chmod +x $AUR-setup.sh
-    chown $USER1:$USER1 $AUR-setup.sh
+    cd /home/"$USER1"
+    wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/misc/$AUR-setup.sh"
+    chmod +x "$AUR-setup.sh"
+    chown "$USER1:$USER1" "$AUR-setup.sh"
     cd
 
     echo ":::"
