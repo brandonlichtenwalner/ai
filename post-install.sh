@@ -113,7 +113,7 @@ read -p "Press [Enter] to launch visudo to edit the sudoers file."
 echo EDITOR=nano >> /etc/environment
 visudo
 
-if [ "$VIDEO" != "nogui" and "$VIDEO" != "vbox" ]; then
+if [ "$VIDEO" != "nogui" ] && [ "$VIDEO" != "vbox" ]; then
     # install essentials for a GUI environment
     echo ":::"
     echo "Installing common packages for GUI environment and selected video driver"
@@ -214,7 +214,6 @@ do
             echo "You chose $AUR."
             break
             ;;
-    case $opt in
         "yaourt")
             AUR=yaourt
             echo ":::"
@@ -227,7 +226,7 @@ do
             echo "You chose no AUR helper."
             break
             ;;
-        *) echo invalid option;;
+        *) echo "invalid option";;
     esac
 done
 
@@ -248,7 +247,7 @@ if [ "$AUR" != "none" ]; then
     echo "Remember to log in as $USER1 and run $AUR-setup.sh to install $AUR."
 fi
 
-if [ "$VIDEO" != "nogui" and "$VIDEO" != "vobx" ]; then
+if [ "$VIDEO" != "nogui" ] && [ "$VIDEO" != "vobx" ]; then
   echo ":::"
   echo "Don't forget to run alsamixer to unmute your sound."
 fi
