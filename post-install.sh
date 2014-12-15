@@ -3,10 +3,10 @@
 # Meant to be run right after a fresh Arch Linux Installation
 # Gets all of the necessities set up
 
-echo :::
-echo Beginning post installation configuration...
+echo ":::"
+echo "Beginning post installation configuration..."
 
-echo :::
+echo ":::"
 PS3='Please choose a video driver: '
 options=("vesa" "nouveau" "ati" "vbox" "nogui")
 select opt in "${options[@]}"
@@ -14,54 +14,54 @@ do
     case $opt in
         "vesa")
             VIDEO="xf86-video-vesa"
-            echo :::
-            echo You chose vesa.
+            echo ":::"
+            echo "You chose vesa."
             break
             ;;
         "nouveau")
             VIDEO="xf86-video-nouveau lib32-nouveau-dri"
-            echo :::
-            echo You chose nouveau.
+            echo ":::"
+            echo "You chose nouveau."
             break
             ;;
         "ati")
             VIDEO="xf86-video-ati lib32-ati-dri"
-            echo :::
-            echo You chose ati.
+            echo ":::"
+            echo "You chose ati."
             break
             ;;
         "vbox")
             VIDEO="vbox"
-            echo :::
-            echo You chose vbox for a VirtualBox install. No additional video driver will be installed.
+            echo ":::"
+            echo "You chose vbox for a VirtualBox install. No additional video driver will be installed."
             break
             ;;
         "nogui")
             VIDEO="nogui"
-            echo :::
-            echo You chose not to install a GUI.
+            echo ":::"
+            echo "You chose not to install a GUI."
             break
             ;;
         *) echo invalid option;;
     esac
 done
 
-echo :::
-echo "Please enter any extra packages to install (e.g. xf86-input-synaptics if installing on a laptop):  "
+echo ":::"
+echo "Please enter any extra packages to install (e.g. xf86-input-synaptics if installing on a laptop and/or desired filesystem tools like btrfs-progs and dosfstools): "
 read EXTRA
 
-echo :::
+echo ":::"
 echo "Please note, the first user will be given admin rights (i.e. added to the wheel group)"
 echo "Please enter a name for the first user:  "
 read USER1
 
 # the first user is made an admin user
 useradd -m -G users,games,wheel -s /bin/bash $USER1
-echo :::
-echo Set password for $USER1
+echo ":::"
+echo "Set password for $USER1"
 passwd $USER1
 
-echo :::
+echo ":::"
 echo "Enter a name for the second user or press [Enter] to skip:  "
 read USER2
 
@@ -69,8 +69,8 @@ if [ "$USER2" = "" ]; then
   echo "No second user added."
 else
   useradd -m -G users,games -s /bin/bash $USER2
-  echo :::
-  echo Set password for $USER2
+  echo ":::"
+  echo "Set password for $USER2"
   passwd $USER2
 fi
 
@@ -89,40 +89,38 @@ fi
 #  echo "/swapfile none swap defaults 0 0" >> /etc/fstab
 #fi
 
-echo :::
+echo ":::"
 echo "You need to uncomment 2 lines in /etc/pacman.conf to enable multilib assuming you are on a 64-bit system (and want/need to use multilib)."
 echo "You may also want to configure a few other options there."
 read -p "Press [Enter] to continue on to editing pacman.conf"
 nano /etc/pacman.conf
 
-echo :::
-echo Updating repositories...
+echo ":::"
+echo "Updating repositories..."
 pacman -Syyu
 
 # install bare essentials
-echo :::
+echo ":::"
 echo "Installing bare essentials and extra specified packages..."
-pacman -S btrfs-progs dkms dosfstools rsync sudo wget $EXTRA
+pacman -S rsync sudo wget $EXTRA
 
 if [ "$VIDEO" != "nogui" and "$VIDEO" != "vobx" ]; then
     # install essentials for a GUI environment
-    echo :::
+    echo ":::"
     echo "Installing common packages for GUI environment and selected video driver"
     pacman -S alsa-utils mesa ttf-dejavu xorg-server xorg-server-utils xorg-xinit $VIDEO
 fi
 
-systemctl enable dkms
-
-echo :::
-echo You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo.
-echo You may also want to add: Defaults:$USER1 timestamp_timeout=20 to the end of the file.
+echo ":::"
+echo "You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo."
+echo "You may also want to add: Defaults:$USER1 timestamp_timeout=20 to the end of the file."
 read -p "Press [Enter] to launch visudo to edit the sudoers file."
-EDITOR=nano visudo
 
 # I never really got into vi...
 echo EDITOR=nano >> /etc/environment
+visudo
 
-echo :::
+echo ":::"
 PS3='Please choose your graphical environment: '
 options=("enlightenment" "lxde" "mate" "none")
 select opt in "${options[@]}"
@@ -131,8 +129,8 @@ do
         "enlightenment")
             ENVIRONMENT=enlightenment
             DESKTOP=gtk
-            echo :::
-            echo You chose $ENVIRONMENT.
+            echo ":::"
+            echo "You chose $ENVIRONMENT."
             break
             ;;
         "lxde")
