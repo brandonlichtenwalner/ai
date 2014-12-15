@@ -204,20 +204,27 @@ fi
 
 echo ":::"
 PS3='Please choose your AUR helper: '
-options=("yaourt" "none")
+options=("aura" "yaourt" "none")
 select opt in "${options[@]}"
 do
     case $opt in
+        "aura")
+            AUR=aura
+            echo ":::"
+            echo "You chose $AUR."
+            break
+            ;;
+    case $opt in
         "yaourt")
             AUR=yaourt
-            echo :::
-            echo You chose $AUR.
+            echo ":::"
+            echo "You chose $AUR."
             break
             ;;
         "none")
             AUR=none
-            echo :::
-            echo You chose no AUR helper.
+            echo ":::"
+            echo "You chose no AUR helper."
             break
             ;;
         *) echo invalid option;;
@@ -229,24 +236,24 @@ if [ "$AUR" != "none" ]; then
     pacman -S --needed base-devel
     
     # it is not good to mkpkg as root, so...
-    echo :::
-    echo Downloading $AUR setup file.
+    echo ":::"
+    echo "Downloading $AUR setup file."
     cd /home/$USER1
     wget https://github.com/brandonlichtenwalner/arch-install/raw/master/misc/$AUR-setup.sh
     chmod +x $AUR-setup.sh
     chown $USER1:$USER1 $AUR-setup.sh
     cd
 
-    echo :::
-    echo Remember to log in as $USER1 and run $AUR-setup.sh to install $AUR.
+    echo ":::"
+    echo "Remember to log in as $USER1 and run $AUR-setup.sh to install $AUR."
 fi
 
 if [ "$VIDEO" != "nogui" and "$VIDEO" != "vobx" ]; then
-  echo :::
+  echo ":::"
   echo "Don't forget to run alsamixer to unmute your sound."
 fi
 
-echo :::
-echo Cleaning up: removing post-install.sh
+echo ":::"
+echo "Cleaning up: removing post-install.sh"
 read -p "Press [Enter] to continue or [CTRL+Z] to keep the file."
 rm post-install.sh
