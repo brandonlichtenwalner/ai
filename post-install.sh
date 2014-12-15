@@ -104,13 +104,6 @@ echo ":::"
 echo "Installing bare essentials and extra specified packages..."
 pacman -S rsync sudo wget $EXTRA
 
-if [ "$VIDEO" != "nogui" and "$VIDEO" != "vobx" ]; then
-    # install essentials for a GUI environment
-    echo ":::"
-    echo "Installing common packages for GUI environment and selected video driver"
-    pacman -S alsa-utils mesa ttf-dejavu xorg-server xorg-server-utils xorg-xinit $VIDEO
-fi
-
 echo ":::"
 echo "You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo."
 echo "You may also want to add: Defaults:$USER1 timestamp_timeout=20 to the end of the file."
@@ -120,87 +113,96 @@ read -p "Press [Enter] to launch visudo to edit the sudoers file."
 echo EDITOR=nano >> /etc/environment
 visudo
 
-echo ":::"
-PS3='Please choose your graphical environment: '
-options=("enlightenment" "lxde" "mate" "none")
-select opt in "${options[@]}"
-do
-    case $opt in
-        "enlightenment")
-            ENVIRONMENT=enlightenment
-            DESKTOP=gtk
-            echo ":::"
-            echo "You chose $ENVIRONMENT."
-            break
-            ;;
-        "lxde")
-            ENVIRONMENT=lxde
-            DESKTOP=gtk
-            echo :::
-            echo You chose $ENVIRONMENT.
-            break
-            ;;
-        "mate")
-            ENVIRONMENT=mate
-            DESKTOP=mate
-            echo :::
-            echo You chose $ENVIRONMENT.
-            break
-            ;;
-        "none")
-            DESKTOP=none
-            echo :::
-            echo You chose no graphical environment.
-            break
-            ;;
-        *) echo invalid option;;
-    esac
-done
-
-# Grab the script to set up the GUI environment and run it
-wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-setup.sh
-source $ENVIRONMENT-setup.sh
-
-# And grab the post-install.txt file for each user
-wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt
-chown $USER1:$USER1 $ENVIRONMENT-post-install.txt
-if [ "$USER2" != "" ]; then
-  cd /home/$USER2
-  wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt
-  chown $USER2:$USER2 $ENVIRONMENT-post-install.txt
-  cd
+if [ "$VIDEO" != "nogui" and "$VIDEO" != "vbox" ]; then
+    # install essentials for a GUI environment
+    echo ":::"
+    echo "Installing common packages for GUI environment and selected video driver"
+    pacman -S alsa-utils mesa ttf-dejavu xorg-server xorg-server-utils xorg-xinit $VIDEO
 fi
 
-# depnding on if this is a virtualbox install...
+# if this is a virtualbox install...
 if [ "$VIDEO" = "vbox" ]; then
-  echo :::
-  echo Updating packages and installing virtualbox-guest-utils
-  pacman -Syu virtualbox-guest-utils
+  echo ":::"
+  echo "Updating packages, installing common GUI packages, and installing virtualbox-guest-utils"
+  pacman -Syu dkms mesa ttf-dejavu virtualbox-guest-utils xorg-server xorg-server-utils xorg-xinit
   
-  echo :::
-  echo Enabling required modules and adding them to /etc/modules-load.d/virtualbox.conf
+  echo ":::"
+  echo "Enabling required modules and adding them to /etc/modules-load.d/virtualbox.conf"
   modprobe -a vboxguest vboxsf vboxvideo
   
   echo vboxguest > /etc/modules-load.d/virtualbox.conf
   echo vboxsf >> /etc/modules-load.d/virtualbox.conf
   echo vboxvideo >> /etc/modules-load.d/virtualbox.conf
 
-  echo :::
-  echo Starting and enabling Virtual Box services
+  echo ":::"
+  echo "Starting and enabling Virtual Box services"
   VBoxClient-all
   systemctl enable vboxservice
 
-  echo :::
-  echo If there were no errors Virtualbox guest-additions are now ready.
-else
-  # grab the appropriate desktop-install file and run it
-  if [ "$DESKTOP" != "none" ]; then
-    wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/desktop-install-$DESKTOP.sh
-    source desktop-install-$DESKTOP.sh
-  fi
+  echo ":::"
+  echo "If there were no errors Virtualbox guest-additions are now ready."
 fi
 
-echo :::
+if [ "$VIDEO" != "nogui" ]; then
+    echo ":::"
+    PS3='Please choose your graphical environment: '
+    options=("enlightenment" "lxde" "mate" "other")
+    select opt in "${options[@]}"
+    do
+        case $opt in
+            "enlightenment")
+                ENVIRONMENT=enlightenment
+                DESKTOP=gtk
+                echo ":::"
+                echo "You chose $ENVIRONMENT."
+                break
+                ;;
+            "lxde")
+                ENVIRONMENT=lxde
+                DESKTOP=gtk
+                echo ":::"
+                echo "You chose $ENVIRONMENT."
+                break
+                ;;
+            "mate")
+                ENVIRONMENT=mate
+                DESKTOP=mate
+                echo ":::"
+                echo "You chose $ENVIRONMENT."
+                break
+                ;;
+            "other")
+                DESKTOP=none
+                echo ":::"
+                echo "You chose no graphical environment."
+                break
+                ;;
+            *) echo "invalid option";;
+        esac
+    done
+
+    # grab the appropriate desktop-install file and run it
+    if [ "$DESKTOP" != "none" ]; then
+        wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/desktop-install-$DESKTOP.sh
+        source desktop-install-$DESKTOP.sh
+    fi
+    
+    # Grab the script to set up the GUI environment and run it
+    wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-setup.sh
+    source $ENVIRONMENT-setup.sh
+    
+    # And grab the post-install.txt file for each user
+    wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt
+    chown $USER1:$USER1 $ENVIRONMENT-post-install.txt
+    if [ "$USER2" != "" ]; then
+      cd /home/$USER2
+      wget https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt
+      chown $USER2:$USER2 $ENVIRONMENT-post-install.txt
+      cd
+    fi
+fi
+
+echo ":::"
 PS3='Please choose your AUR helper: '
 options=("yaourt" "none")
 select opt in "${options[@]}"
