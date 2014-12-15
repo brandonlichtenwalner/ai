@@ -174,7 +174,7 @@ if [ "$VIDEO" != "nogui" ]; then
             "other")
                 DESKTOP=none
                 echo ":::"
-                echo "You chose no graphical environment."
+                echo "You chose 'other' -- please manually configure your graphical environment."
                 break
                 ;;
             *) echo "invalid option";;
@@ -185,20 +185,20 @@ if [ "$VIDEO" != "nogui" ]; then
     if [ "$DESKTOP" != "none" ]; then
         wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/desktop-install-$DESKTOP.sh"
         source "desktop-install-$DESKTOP.sh"
-    fi
     
-    # Grab the script to set up the GUI environment and run it
-    wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-setup.sh"
-    source "$ENVIRONMENT-setup.sh"
-    
-    # And grab the post-install.txt file for each user
-    wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt"
-    chown "$USER1:$USER1" "$ENVIRONMENT-post-install.txt"
-    if [ "$USER2" != "" ]; then
-      cd /home/"$USER2"
-      wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt"
-      chown "$USER2:$USER2" "$ENVIRONMENT-post-install.txt"
-      cd
+        # Grab the script to set up the GUI environment and run it
+        wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-setup.sh"
+        source "$ENVIRONMENT-setup.sh"
+        
+        # And grab the post-install.txt file for each user
+        wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt"
+        chown "$USER1:$USER1" "$ENVIRONMENT-post-install.txt"
+        if [ "$USER2" != "" ]; then
+          cd /home/"$USER2"
+          wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt"
+          chown "$USER2:$USER2" "$ENVIRONMENT-post-install.txt"
+          cd
+        fi
     fi
 fi
 
