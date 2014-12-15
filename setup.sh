@@ -2,34 +2,13 @@
 
 echo "This script follows https://wiki.archlinux.org/index.php/Beginners'_guide"
 echo "Before running it, make sure you have:"
-echo " 1) Established (and tested) an internet connection"
-echo " 2) Partitioned the disk (note: this script is written for a single disk setup with a root and swap partition)"
+echo " 1) established (and tested) an internet connection"
+echo " 2) partitioned the disk(s)"
+echo " 3) created the filesystem(s) and activated any swap partitions"
+echo " 4) mounted the root (/) partition at /mnt, e.g. 'mount /dev/sda1 /mnt'"
 # By default, I recommend a SWAP (half max RAM supported by mobo) and root (rest of the space) partition
 # See: https://wiki.archlinux.org/index.php/Suspend_and_hibernate#About_swap_partition.2Ffile_size for SWAP size logic
 read -p "Press [Enter] to begin."
-
-echo :::
-echo "Time to choose a file system for root (/)."
-echo "Enter the full command (e.g. mkfs.btrfs -L myLabel /dev/sda /dev/sdb): "
-read MKFSCOMMAND
-
-### TODO
-### update the code to allow for root on a Btrfs subvolume
-### https://wiki.archlinux.org/index.php/Btrfs#Installing_with_root_on_btrfs_subvolume
-echo :::
-echo "Enter your root (/) partition (e.g. /dev/sda1): "
-read ROOTPART
-
-$MKFSCOMMAND $ROOTPART
-mount $ROOTPART /mnt
-
-echo :::
-echo "Enter your swap partition (e.g. /dev/sda2) or 'none': "
-read SWAPPART
-if [ "$SWAPPART" != "none" ]; then
-  mkswap $SWAPPART
-  swapon $SWAPPART
-fi
 
 echo :::
 echo It will take a few minutes--or longer on a slow connection--for pacstrap to run,
