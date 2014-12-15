@@ -59,9 +59,7 @@ read -p "Press [Enter] to continue."
 nano /boot/syslinux/syslinux.cfg
 
 echo ":::"
-echo "Cleaning up: removing chrooted.sh"
-read -p "Press [Enter] to continue."
+echo "Cleaning up: removing chrooted.sh -- Press [Enter] to continue or [CTRL+Z] to keep the file."
+echo "Then just type 'exit' to leave the chroot environment and finish installation."
+read -p
 rm /chrooted.sh
-
-echo ":::"
-echo "Now just type 'exit' to leave the chroot environment and finish installation."
