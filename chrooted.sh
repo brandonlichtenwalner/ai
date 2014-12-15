@@ -36,7 +36,7 @@ echo ":::"
 echo "About to run mkinitcpio"
 echo "Type 'yes' if you need to enter any HOOKS--e.g. for RAID, LVM, or USB boot--or hit [Enter] to continue: "
 read HOOKS
-if [ $HOOKS = "yes" ]; then
+if [ "$HOOKS" = "yes" ]; then
   nano /etc/mkinitcpio.conf
 fi
 
