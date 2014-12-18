@@ -51,12 +51,14 @@ echo "Please enter any extra packages to install (e.g. xf86-input-synaptics if i
 read EXTRA
 
 echo ":::"
-echo "Please note, the first user will be given admin rights (i.e. added to the wheel group)"
 echo "Please enter a name for the first user:  "
 read USER1
 
-# the first user is made an admin user
-useradd -m -G users,games,wheel -s /bin/bash "$USER1"
+echo ":::"
+echo "Please enter a comma separated list of group(s) for $USER1 (e.g. users,wheel,games):  "
+read GROUPS1
+
+useradd -m -G "$GROUPS1" -s /bin/bash "$USER1"
 echo ":::"
 echo "Set password for $USER1"
 passwd "$USER1"
@@ -68,7 +70,10 @@ read USER2
 if [ "$USER2" = "" ]; then
   echo "No second user added."
 else
-  useradd -m -G users,games -s /bin/bash "$USER2"
+  echo "Please enter a comma separated list of group(s) for $USER2 (e.g. users,games):  "
+  read GROUPS2
+
+  useradd -m -G "$GROUPS2" -s /bin/bash "$USER2"
   echo ":::"
   echo "Set password for $USER2"
   passwd "$USER2"
