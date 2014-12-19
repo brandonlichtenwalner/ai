@@ -28,7 +28,7 @@ echo "$HOSTNAME" > /etc/hostname
 
 echo ":::"
 echo "About to enable dhcpcd.service"
-echo "If using wireless or a non-standard network config (during setup) hit Control+Z now to halt the script and finish the process manually."
+echo "If using wireless or a non-standard network config (during setup) hit Control+Z now to halt and finish manually."
 read -p "Press [Enter] to continue."
 systemctl enable dhcpcd.service
 
@@ -68,7 +68,7 @@ while [ "$BOOTTYPE" != "UEFI" ] && [ "$BOOTTYPE" != "UEFI" ]; do
     read -p "Press [Enter] to continue."
     nano /boot/syslinux/syslinux.cfg
     
-  else if [ "$BOOTTYPE" = "UEFI" ]; then
+  elif [ "$BOOTTYPE" = "UEFI" ]; then
     echo ":::"
     echo "Proceeding with Syslinux UEFI install."
     echo "Please enter ESP location (e.g. /boot):  "
