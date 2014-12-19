@@ -60,7 +60,8 @@ echo "Please enter a comma separated list of group(s) for $USER1 (e.g. users,whe
 read GROUPS1
 
 # add e.g. '-u 2000' to specify a user ID above the normal (beginning at 1000) range
-useradd -m -U -G "$GROUPS1" -s /bin/bash "$USER1"
+# add the '-U' flag to create a group named after the user and add the user to that group
+useradd -m -G "$GROUPS1" -s /bin/bash "$USER1"
 echo ":::"
 echo "Set password for $USER1"
 passwd "$USER1"
@@ -75,7 +76,7 @@ else
   echo "Please enter a comma separated list of group(s) for $USER2 (e.g. users,games):  "
   read GROUPS2
 
-  useradd -m -U -G "$GROUPS2" -s /bin/bash "$USER2"
+  useradd -m -G "$GROUPS2" -s /bin/bash "$USER2"
   echo ":::"
   echo "Set password for $USER2"
   passwd "$USER2"
