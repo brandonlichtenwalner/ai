@@ -33,10 +33,13 @@ read -p "Press [Enter] to continue."
 systemctl enable dhcpcd.service
 
 echo ":::"
-echo "About to run mkinitcpio"
-echo "Type 'yes' if you need to enter any HOOKS--e.g. for RAID, LVM, or USB boot--or hit [Enter] to continue: "
+echo "About to run mkinitcpio, would you like to edit mkinitcpio.conf first"
+echo "e.g. to add HOOKS for RAID, LVM, or USB boot or add crc32c/crc32c-intel to MODULES for Btrfs"
+echo "[Y/n]: "
 read HOOKS
-if [ "$HOOKS" = "yes" ]; then
+if [ "$HOOKS" = "n" ] || [ "$HOOKS" = "N" ] || [ "$HOOKS" = "no" ] || [ "$HOOKS" = "No" ]; then
+  echo "Continuing without editing mkinitcpio.conf..."
+else
   nano /etc/mkinitcpio.conf
 fi
 
@@ -47,15 +50,30 @@ echo "Set the root password..."
 passwd
 
 echo ":::"
-echo "Proceeding with a standard Syslinux bootloader install"
+echo "Proceeding with Syslinux bootloader install."
 echo "If you want to use GRUB, etc. hit Control+Z now to stop halt the script and finish the process manually."
-read -p "Press [Enter] to continue."
-pacman -S gptfdisk syslinux
 
-### dosfstools and efibootmgr and needed for UEFI boot
-### also, apparently the following script is not sufficient for UEFI boot
+while [ "$BOOTTYPE" != "UEFI" ] && [ "$BOOTTYPE" != "UEFI" ]; do
+  echo "Please enter 'BIOS' or 'UEFI':  "
+  read BOOTTYPE
 
-syslinux-install_update -i -a -m
+  if [ "$BOOTTYPE" = "BIOS" ]; then
+    echo ":::"
+    echo "Proceeding with Syslinux BIOS install..."
+    pacman -S gptfdisk syslinux
+    syslinux-install_update -i -a -m
+  else if [ "$BOOTTYPE" = "UEFI" ]; then
+    echo ":::"
+    echo "Proceeding with Syslinux UEFI install..."
+    pacman -S dosfstools efibootmgr gptfdisk syslinux
+    
+    ### code for EFI Syslinux install here
+    
+  else
+    echo ":::"
+    echo "Invalid option."
+  fi
+done
 
 echo ":::"
 echo "Time to configure syslinux.cfg :: change the root partition as needed and edit any other options to your liking."
