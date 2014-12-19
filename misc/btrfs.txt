@@ -1,0 +1,3 @@
+https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Snapshots
+
+http://marc.merlins.org/perso/btrfs/post_2014-03-22_Btrfs-Tips_-Doing-Fast-Incremental-Backups-With-Btrfs-Send-and-Receive.html
