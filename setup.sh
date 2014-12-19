@@ -6,6 +6,7 @@ echo " 1) established (and tested) an internet connection"
 echo " 2) partitioned the disk(s)"
 echo " 3) created the filesystem(s) and activated any swap partitions"
 echo " 4) mounted the root (/) partition at /mnt, e.g. 'mount /dev/sda1 /mnt'"
+echo "    and mounted any other necessary partitions, e.g. /boot"
 # By default, I recommend a SWAP (half max RAM supported by mobo) and root (rest of the space) partition
 # See: https://wiki.archlinux.org/index.php/Suspend_and_hibernate#About_swap_partition.2Ffile_size for SWAP size logic
 read -p "Press [Enter] to begin."
