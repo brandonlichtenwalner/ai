@@ -47,7 +47,8 @@ do
 done
 
 echo ":::"
-echo "Please enter any extra packages to install (e.g. xf86-input-synaptics if installing on a laptop and/or desired filesystem tools like btrfs-progs and dosfstools): "
+echo "Please enter any extra packages to install."
+echo "e.g. xf86-input-synaptics on a laptop and/or desired filesystem tools like btrfs-progs:  "
 read EXTRA
 
 echo ":::"
@@ -58,7 +59,8 @@ echo ":::"
 echo "Please enter a comma separated list of group(s) for $USER1 (e.g. users,wheel,games):  "
 read GROUPS1
 
-useradd -m -G "$GROUPS1" -s /bin/bash "$USER1"
+# add e.g. '-u 2000' to specify a user ID above the normal (beginning at 1000) range
+useradd -m -U -G "$GROUPS1" -s /bin/bash "$USER1"
 echo ":::"
 echo "Set password for $USER1"
 passwd "$USER1"
@@ -73,7 +75,7 @@ else
   echo "Please enter a comma separated list of group(s) for $USER2 (e.g. users,games):  "
   read GROUPS2
 
-  useradd -m -G "$GROUPS2" -s /bin/bash "$USER2"
+  useradd -m -U -G "$GROUPS2" -s /bin/bash "$USER2"
   echo ":::"
   echo "Set password for $USER2"
   passwd "$USER2"
@@ -95,7 +97,7 @@ fi
 #fi
 
 echo ":::"
-echo "You need to uncomment 2 lines in /etc/pacman.conf to enable multilib assuming you are on a 64-bit system (and want/need to use multilib)."
+echo "You need to uncomment 2 lines in /etc/pacman.conf if you wish to enable multilib on a 64-bit system."
 echo "You may also want to configure a few other options there."
 read -p "Press [Enter] to continue on to editing pacman.conf"
 nano /etc/pacman.conf
@@ -107,16 +109,16 @@ pacman -Syyu
 # install bare essentials
 echo ":::"
 echo "Installing bare essentials and extra specified packages..."
-pacman -S rsync sudo wget "$EXTRA"
+pacman -S --needed rsync sudo wget "$EXTRA"
 
 echo ":::"
 echo "You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo."
-echo "You may also want to add: Defaults:$USER1 timestamp_timeout=20 to the end of the file."
+echo "You may also want to add: Defaults:USERNAME timestamp_timeout=20 to the end of the file for any admin users."
 read -p "Press [Enter] to launch visudo to edit the sudoers file."
 
 # I never really got into vi...
+EDITOR=nano visudo
 echo EDITOR=nano >> /etc/environment
-visudo
 
 if [ "$VIDEO" != "nogui" ] && [ "$VIDEO" != "vbox" ]; then
     # install essentials for a GUI environment
@@ -241,7 +243,7 @@ if [ "$AUR" != "none" ]; then
     
     # it is not good to mkpkg as root, so...
     echo ":::"
-    echo "Downloading $AUR setup file."
+    echo "Downloading $AUR setup file for $USER1."
     cd /home/"$USER1"
     wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/misc/$AUR-setup.sh"
     chmod +x "$AUR-setup.sh"
@@ -259,5 +261,5 @@ fi
 
 echo ":::"
 echo "Cleaning up: removing post-install.sh"
-read -p "Press [Enter] to continue or [CTRL+Z] to keep the file."
+read -p "Press [Enter] to continue or [CTRL+Z] to exit and keep the file."
 rm post-install.sh
