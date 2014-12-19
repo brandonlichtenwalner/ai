@@ -51,6 +51,10 @@ echo "Proceeding with a standard Syslinux bootloader install"
 echo "If you want to use GRUB, etc. hit Control+Z now to stop halt the script and finish the process manually."
 read -p "Press [Enter] to continue."
 pacman -S gptfdisk syslinux
+
+### dosfstools and efibootmgr and needed for UEFI boot
+### also, apparently the following script is not sufficient for UEFI boot
+
 syslinux-install_update -i -a -m
 
 echo ":::"
@@ -60,6 +64,5 @@ nano /boot/syslinux/syslinux.cfg
 
 echo ":::"
 echo "Cleaning up: removing chrooted.sh -- Press [Enter] to continue or [CTRL+Z] to keep the file."
-echo "Then just type 'exit' to leave the chroot environment and finish installation."
-read -p
+read -p "Then just type 'exit' to leave the chroot environment and finish installation."
 rm /chrooted.sh
