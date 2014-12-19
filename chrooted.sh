@@ -62,23 +62,35 @@ while [ "$BOOTTYPE" != "UEFI" ] && [ "$BOOTTYPE" != "UEFI" ]; do
     echo "Proceeding with Syslinux BIOS install..."
     pacman -S gptfdisk syslinux
     syslinux-install_update -i -a -m
+    
+    echo ":::"
+    echo "Opening syslinux.cfg for editing--change the root partition as needed and edit any other options to your liking."
+    read -p "Press [Enter] to continue."
+    nano /boot/syslinux/syslinux.cfg
+    
   else if [ "$BOOTTYPE" = "UEFI" ]; then
     echo ":::"
-    echo "Proceeding with Syslinux UEFI install..."
+    echo "Proceeding with Syslinux UEFI install."
+    echo "Please enter ESP location (e.g. /boot):  "
+    read esp
+    echo "Please enter device where ESP is located (e.g. /dev/sda):  "
+    read bootdevice
+    
     pacman -S dosfstools efibootmgr gptfdisk syslinux
     
-    ### code for EFI Syslinux install here
+    mkdir -p "$esp"/EFI/syslinux
+    cp -r /usr/lib/syslinux/efi64/* "$esp"/EFI/syslinux
+    efibootmgr -c -d "$bootdevice" -p 1 -l /EFI/syslinux/syslinux.efi -L "Syslinux"
     
+    echo ":::"
+    echo "Opening syslinux.cfg for editing--change the root partition as needed and edit any other options to your liking."
+    read -p "Press [Enter] to continue."
+    nano "$esp"/EFI/syslinux/syslinux.cfg
   else
     echo ":::"
     echo "Invalid option."
   fi
 done
-
-echo ":::"
-echo "Time to configure syslinux.cfg :: change the root partition as needed and edit any other options to your liking."
-read -p "Press [Enter] to continue."
-nano /boot/syslinux/syslinux.cfg
 
 echo ":::"
 echo "Cleaning up: removing chrooted.sh -- Press [Enter] to continue or [CTRL+Z] to keep the file."
