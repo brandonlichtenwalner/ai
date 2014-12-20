@@ -62,6 +62,7 @@ while [ "$BOOTTYPE" != "UEFI" ] && [ "$BOOTTYPE" != "BIOS" ]; do
     echo "Proceeding with Syslinux BIOS install..."
     pacman -S gptfdisk syslinux
     syslinux-install_update -i -a -m
+    curl https://projects.archlinux.org/archiso.git/plain/configs/releng/syslinux/splash.png -o /boot/syslinux/splash.png
     
     echo ":::"
     echo "Opening syslinux.cfg for editing--change the root partition as needed and edit any other options to your liking."
@@ -82,6 +83,7 @@ while [ "$BOOTTYPE" != "UEFI" ] && [ "$BOOTTYPE" != "BIOS" ]; do
     cp -r /usr/lib/syslinux/efi64/* "$esp"/EFI/syslinux
     efibootmgr -c -d "$bootdevice" -p 1 -l /EFI/syslinux/syslinux.efi -L "Syslinux"
     cp "$esp"/syslinux/syslinux.cfg "$esp"/EFI/syslinux/
+    curl https://projects.archlinux.org/archiso.git/plain/configs/releng/syslinux/splash.png -o "$esp"/EFI/syslinux/splash.png
     
     echo ":::"
     echo "Opening syslinux.cfg for editing--change the root partition as needed and edit any other options to your liking."
