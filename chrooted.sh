@@ -82,7 +82,7 @@ while [ "$BOOTTYPE" != "UEFI" ] && [ "$BOOTTYPE" != "BIOS" ]; do
     mkdir -p "$esp"/EFI/syslinux
     cp -r /usr/lib/syslinux/efi64/* "$esp"/EFI/syslinux
     efibootmgr -c -d "$bootdevice" -p 1 -l /EFI/syslinux/syslinux.efi -L "Syslinux"
-    cp "$esp"/syslinux/syslinux.cfg "$esp"/EFI/syslinux/
+    curl https://raw.githubusercontent.com/brandonlichtenwalner/arch-install/master/misc/syslinux.cfg -o "$esp"/EFI/syslinux/syslinux.cfg
     curl https://projects.archlinux.org/archiso.git/plain/configs/releng/syslinux/splash.png -o "$esp"/EFI/syslinux/splash.png
     
     echo ":::"
