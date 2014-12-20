@@ -81,6 +81,7 @@ while [ "$BOOTTYPE" != "UEFI" ] && [ "$BOOTTYPE" != "BIOS" ]; do
     mkdir -p "$esp"/EFI/syslinux
     cp -r /usr/lib/syslinux/efi64/* "$esp"/EFI/syslinux
     efibootmgr -c -d "$bootdevice" -p 1 -l /EFI/syslinux/syslinux.efi -L "Syslinux"
+    cp "$esp"/syslinux/syslinux.cfg "$esp"/EFI/syslinux/
     
     echo ":::"
     echo "Opening syslinux.cfg for editing--change the root partition as needed and edit any other options to your liking."
