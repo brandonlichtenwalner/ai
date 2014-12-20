@@ -47,11 +47,6 @@ do
 done
 
 echo ":::"
-echo "Please enter any extra packages to install."
-echo "e.g. xf86-input-synaptics on a laptop and/or desired filesystem tools like btrfs-progs:  "
-read EXTRA
-
-echo ":::"
 echo "Please enter a name for the first user:  "
 read USER1
 
@@ -106,6 +101,11 @@ nano /etc/pacman.conf
 echo ":::"
 echo "Updating repositories..."
 pacman -Syyu
+
+echo ":::"
+echo "Please enter any extra packages to install."
+echo "e.g. xf86-input-synaptics on a laptop and/or desired filesystem tools like btrfs-progs:  "
+read EXTRA
 
 # install bare essentials
 echo ":::"
