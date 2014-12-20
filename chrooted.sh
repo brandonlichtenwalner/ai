@@ -53,7 +53,7 @@ echo ":::"
 echo "Proceeding with Syslinux bootloader install."
 echo "If you want to use GRUB, etc. hit Control+Z now to stop halt the script and finish the process manually."
 
-while [ "$BOOTTYPE" != "UEFI" ] && [ "$BOOTTYPE" != "UEFI" ]; do
+while [ "$BOOTTYPE" != "UEFI" ] && [ "$BOOTTYPE" != "BIOS" ]; do
   echo "Please enter 'BIOS' or 'UEFI':  "
   read BOOTTYPE
 
