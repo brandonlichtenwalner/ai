@@ -8,7 +8,7 @@ echo "Beginning post installation configuration..."
 
 echo ":::"
 PS3='Please choose a video driver: '
-options=("vesa" "nouveau" "ati" "vbox" "nogui")
+options=("vesa" "nouveau-multilib" "nvidia-304xx" "ati-multilib" "vbox" "nogui")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -18,16 +18,22 @@ do
             echo "You chose vesa."
             break
             ;;
-        "nouveau")
+        "nouveau-multilib")
             VIDEO="xf86-video-nouveau lib32-nouveau-dri"
             echo ":::"
-            echo "You chose nouveau."
+            echo "You chose nouveau-multilib."
             break
             ;;
-        "ati")
+        "nvidia")
+            VIDEO="nvidia-304xx"
+            echo ":::"
+            echo "You chose nvidia-304xx."
+            break
+            ;;
+        "ati-multilib")
             VIDEO="xf86-video-ati lib32-ati-dri"
             echo ":::"
-            echo "You chose ati."
+            echo "You chose ati-multilib."
             break
             ;;
         "vbox")
