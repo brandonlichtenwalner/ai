@@ -24,7 +24,7 @@ do
             echo "You chose nouveau-multilib."
             break
             ;;
-        "nvidia")
+        "nvidia-304xx")
             VIDEO="nvidia-304xx"
             echo ":::"
             echo "You chose nvidia-304xx."
