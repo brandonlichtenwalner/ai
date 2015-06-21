@@ -12,4 +12,4 @@ rm -r aura-setup
 
 echo ":::"
 echo "If there were no errors, Aura is now ready to use."
-rm aura-setup.sh
+rm aura.sh
