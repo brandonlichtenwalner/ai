@@ -1,5 +1,11 @@
 #!/bin/sh
 
+echo ":::"
+echo "Installing needed base-devel packages for AUR builds"
+sudo pacman -S --needed base-devel
+
+echo ":::"
+echo "Running setup, makepkg, and cleanup for aura"
 mkdir aura-setup
 cd aura-setup
 curl -O https://aur.archlinux.org/packages/au/aura-bin/aura-bin.tar.gz
