@@ -83,21 +83,6 @@ else
   passwd "$USER2"
 fi
 
-# I am back of the opinion that a dedicated swap partition is the way to go
-# this is particularly the case if using btrfs as a traditional swap file (as below) will not work
-#  
-#echo :::
-#echo "Enter size (512M is recommended) for swapfile or 0 to skip creating one:  "
-#read SWAPSIZE
-#
-#if [ $SWAPSIZE != 0 ]; then
-#  fallocate -l $SWAPSIZE /swapfile
-#  chmod 600 /swapfile
-#  mkswap /swapfile
-#  swapon /swapfile
-#  echo "/swapfile none swap defaults 0 0" >> /etc/fstab
-#fi
-
 echo ":::"
 echo "You need to uncomment 2 lines in /etc/pacman.conf if you wish to enable multilib on a 64-bit system."
 echo "You may also want to configure a few other options there."
@@ -157,65 +142,6 @@ if [ "$VIDEO" = "vbox" ]; then
   echo "If there were no errors Virtualbox guest-additions are now ready."
 fi
 
-if [ "$VIDEO" != "nogui" ]; then
-    echo ":::"
-    PS3='Please choose your graphical environment: '
-    options=("enlightenment" "lxde" "mate" "other")
-    select opt in "${options[@]}"
-    do
-        case $opt in
-            "enlightenment")
-                ENVIRONMENT=enlightenment
-                DESKTOP=gtk
-                echo ":::"
-                echo "You chose $ENVIRONMENT."
-                break
-                ;;
-            "lxde")
-                ENVIRONMENT=lxde
-                DESKTOP=gtk
-                echo ":::"
-                echo "You chose $ENVIRONMENT."
-                break
-                ;;
-            "mate")
-                ENVIRONMENT=mate
-                DESKTOP=mate
-                echo ":::"
-                echo "You chose $ENVIRONMENT."
-                break
-                ;;
-            "other")
-                DESKTOP=none
-                echo ":::"
-                echo "You chose 'other' -- please manually configure your graphical environment."
-                break
-                ;;
-            *) echo "invalid option";;
-        esac
-    done
-
-    # grab the appropriate desktop-install file and run it
-    if [ "$DESKTOP" != "none" ]; then
-        wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/desktop-install-$DESKTOP.sh"
-        source "desktop-install-$DESKTOP.sh"
-    
-        # Grab the script to set up the GUI environment and run it
-        wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-setup.sh"
-        source "$ENVIRONMENT-setup.sh"
-        
-        # And grab the post-install.txt file for each user
-        wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt"
-        chown "$USER1:$USER1" "$ENVIRONMENT-post-install.txt"
-        if [ "$USER2" != "" ]; then
-          cd /home/"$USER2"
-          wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/environments/$ENVIRONMENT-post-install.txt"
-          chown "$USER2:$USER2" "$ENVIRONMENT-post-install.txt"
-          cd
-        fi
-    fi
-fi
-
 echo ":::"
 PS3='Please choose your AUR helper: '
 options=("aura" "yaourt" "none")
@@ -252,13 +178,13 @@ if [ "$AUR" != "none" ]; then
     echo ":::"
     echo "Downloading $AUR setup file for $USER1."
     cd /home/"$USER1"
-    wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/misc/$AUR-setup.sh"
-    chmod +x "$AUR-setup.sh"
-    chown "$USER1:$USER1" "$AUR-setup.sh"
+    wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/package-install/$AUR.sh"
+    chmod +x "$AUR.sh"
+    chown "$USER1:$USER1" "$AUR.sh"
     cd
 
     echo ":::"
-    echo "Remember to log in as $USER1 and run $AUR-setup.sh to install $AUR."
+    echo "Remember to log in as $USER1 and run $AUR.sh to install $AUR."
 fi
 
 if [ "$VIDEO" != "nogui" ] && [ "$VIDEO" != "vobx" ]; then
