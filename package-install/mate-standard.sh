@@ -15,4 +15,4 @@ echo ":::"
 echo "MATE setup complete."
 # echo Please see the mate-post-install.txt file for additional--per user--configuration steps.
 
-rm mate-setup.sh
+rm mate-standard.sh
