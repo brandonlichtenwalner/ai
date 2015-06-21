@@ -31,8 +31,3 @@ yaourt -S chromium-pepper-flash google-talkplugin
 echo :::
 echo Installing Virtualbox extensions from AUR
 yaourt -S virtualbox-ext-oracle
-
-# on a laptop or other device where you want to set up wireless
-# sudo pacman -S network-manager-applet
-# sudo systemctl enable NetworkManager.service
-# sudo systemctl disable dhcpcd.service
