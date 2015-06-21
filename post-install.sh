@@ -143,56 +143,15 @@ if [ "$VIDEO" = "vbox" ]; then
 fi
 
 echo ":::"
-PS3='Please choose your AUR helper: '
-options=("aura" "yaourt" "none")
-select opt in "${options[@]}"
-do
-    case $opt in
-        "aura")
-            AUR=aura
-            echo ":::"
-            echo "You chose $AUR."
-            break
-            ;;
-        "yaourt")
-            AUR=yaourt
-            echo ":::"
-            echo "You chose $AUR."
-            break
-            ;;
-        "none")
-            AUR=none
-            echo ":::"
-            echo "You chose no AUR helper."
-            break
-            ;;
-        *) echo "invalid option";;
-    esac
-done
-
-if [ "$AUR" != "none" ]; then
-    echo "Installing needed base-devel packages for AUR builds"
-    pacman -S --needed base-devel
-    
-    # it is not good to mkpkg as root, so...
-    echo ":::"
-    echo "Downloading $AUR setup file for $USER1."
-    cd /home/"$USER1"
-    wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/package-install/$AUR.sh"
-    chmod +x "$AUR.sh"
-    chown "$USER1:$USER1" "$AUR.sh"
-    cd
-
-    echo ":::"
-    echo "Remember to log in as $USER1 and run $AUR.sh to install $AUR."
-fi
+echo "Downloading extra package-install scripts for $USER1."
+cd /home/"$USER1"
+wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/package-install/"
+chown -R "$USER1:$USER1" package-install
 
 if [ "$VIDEO" != "nogui" ] && [ "$VIDEO" != "vobx" ]; then
   echo ":::"
   echo "Don't forget to run alsamixer to unmute your sound."
 fi
-
-wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/package-install/package-install.txt"
 
 echo ":::"
 echo "Cleaning up: removing post-install.sh"
