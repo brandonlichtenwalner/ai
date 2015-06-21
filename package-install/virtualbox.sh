@@ -8,5 +8,5 @@ sudo pacman -S qt4 virtualbox-guest-iso virtualbox-host-modules
 sudo sh -c "echo \"vboxdrv\" > /etc/modules-load.d/virtualbox.conf"
 
 echo ":::"
-echo "Installing Virtualbox extensions from AUR"
-yaourt -S virtualbox-ext-oracle
+echo "You should now install Virtualbox extensions from AUR"
+echo "e.g. yaourt -S virtualbox-ext-oracle"
