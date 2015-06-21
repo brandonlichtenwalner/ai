@@ -1,6 +1,11 @@
 #!/bin/sh
 
-# everyone uses the AUR, right?
+echo ":::"
+echo "Installing needed base-devel packages for AUR builds"
+sudo pacman -S --needed base-devel
+
+echo ":::"
+echo "Running setup, makepkg, and cleanup for yaourt"
 mkdir yaourt-setup
 cd yaourt-setup
 curl -O https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz
@@ -16,6 +21,6 @@ cd ..
 cd ..
 rm -r yaourt-setup
 
-echo :::
-echo If there were no errors, Yaourt is now ready to use.
+echo ":::
+echo "If there were no errors, Yaourt is now ready to use."
 rm yaourt.sh
