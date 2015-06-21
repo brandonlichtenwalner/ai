@@ -4,3 +4,5 @@
 sudo pacman -S network-manager-applet
 sudo systemctl enable NetworkManager.service
 sudo systemctl disable dhcpcd.service
+
+rm network-manager-applet.sh
