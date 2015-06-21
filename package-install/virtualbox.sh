@@ -10,3 +10,5 @@ sudo sh -c "echo \"vboxdrv\" > /etc/modules-load.d/virtualbox.conf"
 echo ":::"
 echo "Installing Virtualbox extensions from AUR"
 yaourt -S virtualbox-ext-oracle
+
+rm virtualbox.sh
