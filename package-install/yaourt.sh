@@ -23,4 +23,3 @@ rm -r yaourt-setup
 
 echo ":::"
 echo "If there were no errors, Yaourt is now ready to use."
-rm yaourt.sh
