@@ -192,6 +192,8 @@ if [ "$VIDEO" != "nogui" ] && [ "$VIDEO" != "vobx" ]; then
   echo "Don't forget to run alsamixer to unmute your sound."
 fi
 
+echo "wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/package-install/" >> package-install.txt
+
 echo ":::"
 echo "Cleaning up: removing post-install.sh"
 read -p "Press [Enter] to continue or [CTRL+Z] to exit and keep the file."
