@@ -143,10 +143,23 @@ if [ "$VIDEO" = "vbox" ]; then
 fi
 
 echo ":::"
-echo "Downloading extra package-install scripts for $USER1."
-cd /home/"$USER1"
-wget "https://github.com/brandonlichtenwalner/arch-install/raw/master/package-install/"
-chown -R "$USER1:$USER1" package-install
+echo "Install git and pull down arch-install from GitHub for package-install scripts (y/N) ?"
+read MOREINSTALL
+
+if [ "$MOREINSTALL" = "y" ]; then
+  echo ":::"
+  echo "Installing git client."
+  pacman -S git
+
+  echo ":::"
+  echo "Cloning arch-install for $USER1."
+  cd /home/"$USER1"
+  git clone https://github.com/brandonlichtenwalner/arch-install
+  chown -R "$USER1:$USER1" arch-install
+else
+  echo ":::"
+  echo "Skipping GitHub package-install scripts."
+fi
 
 if [ "$VIDEO" != "nogui" ] && [ "$VIDEO" != "vobx" ]; then
   echo ":::"
@@ -156,4 +169,4 @@ fi
 echo ":::"
 echo "Cleaning up: removing post-install.sh"
 read -p "Press [Enter] to continue or [CTRL+Z] to exit and keep the file."
-rm post-install.sh
+rm ~/post-install.sh
