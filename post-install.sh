@@ -101,7 +101,7 @@ read EXTRA
 # install bare essentials
 echo ":::"
 echo "Installing bare essentials and extra specified packages..."
-pacman -S --needed rsync sudo wget "$EXTRA"
+pacman -S sudo wget "$EXTRA"
 
 echo ":::"
 echo "You need to uncomment the line in the sudoers file to allow members of the wheel group to use sudo."
